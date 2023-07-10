@@ -45,7 +45,7 @@ public class AdminManagementService {
         String[] categoriesInputArr = scanner.next().split(",");
         System.out.println("\nPlatforms you added to the app: ");
         appManagement.listPlatforms();
-        System.out.print("Enter the film platforms (with a comma) : ");
+        System.out.print("\nEnter the film platforms (with a comma) : ");
         String[] platformsInputArr = scanner.next().split(",");
         appManagement.addMovieToApp(movie, categoriesInputArr, platformsInputArr);
         appManagement.listMovies();
