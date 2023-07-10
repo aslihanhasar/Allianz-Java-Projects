@@ -26,7 +26,7 @@ public class Main {
 
     private static void printMainMenu() {
         System.out.print("""
-                ***** Welcome to the Movie Management App *****
+                \n***** Welcome to the Movie Management App *****
                 1 - Admin Operations.
                 2 - User Operations.
                 3 - Exit.
