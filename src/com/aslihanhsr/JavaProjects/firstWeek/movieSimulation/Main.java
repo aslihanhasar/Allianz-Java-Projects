@@ -5,10 +5,19 @@ import com.aslihanhsr.JavaProjects.firstWeek.movieSimulation.service.AppManageme
 
 import java.util.Scanner;
 
+/**
+ * This class represents the main entry point of the Movie Simulation.
+ * It provides functionality for both admin and user operations.
+ */
 public class Main {
     private static final AppManagementService appManagementService = new AppManagementService();
     private static final Scanner scanner = new Scanner(System.in);
 
+    /**
+     * The main method that starts the Movie Simulation.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         boolean exit = false;
         while (!exit) {
@@ -23,6 +32,11 @@ public class Main {
         }
     }
 
+    /**
+     * Performs the admin operations,
+     * allowing the user to create categories,
+     * platforms, and movies.
+     */
     private static void adminOperations() {
         boolean backToMenu = false;
         do {
@@ -38,6 +52,10 @@ public class Main {
         } while (!backToMenu);
     }
 
+    /**
+     * Performs the user operations,
+     * allowing the user to list movies by category.
+     */
     private static void userOperations() {
         boolean backToMenu = false;
         do {
@@ -55,6 +73,9 @@ public class Main {
         } while (!backToMenu);
     }
 
+    /**
+     * Creates a new category by taking user input.
+     */
     private static void createCategory() {
         System.out.print("Enter the category name: ");
         String categoryName = scanner.next();
@@ -62,6 +83,9 @@ public class Main {
         appManagementService.addCategoryToApp(category);
     }
 
+    /**
+     * Creates a new platform by taking user input.
+     */
     private static void createPlatform() {
         System.out.print("Enter the platform name: ");
         String platformName = scanner.next();
@@ -69,6 +93,10 @@ public class Main {
         appManagementService.addPlatformToApp(platform);
     }
 
+    /**
+     * Creates a new movie by taking user input
+     * for movie details, categories, and platforms.
+     */
     private static void createMovie() {
         Movie movie = getMovieFromInput();
         System.out.println("Categories you added to the app: ");
@@ -83,6 +111,11 @@ public class Main {
         appManagementService.listMovies();
     }
 
+    /**
+     * Retrieves movie details from user input.
+     *
+     * @return The created movie object.
+     */
     private static Movie getMovieFromInput() {
         System.out.print("Enter the film name: ");
         String filmName = scanner.next();
@@ -97,6 +130,9 @@ public class Main {
         return new Movie(filmName, director, releaseDate, showTimes, imdbPoint);
     }
 
+    /**
+     * Prints the main menu of the Movie Management App.
+     */
     private static void printMainMenu() {
         System.out.print("""
                 \n***** Welcome to the Movie Management App *****
@@ -106,6 +142,9 @@ public class Main {
                 Enter Your choice:\s""");
     }
 
+    /**
+     * Prints the admin operations menu.
+     */
     private static void adminOperationsMenu() {
         System.out.print("""
                 \n***** Admin Operations *****
@@ -116,6 +155,9 @@ public class Main {
                 Enter your choice:\s""");
     }
 
+    /**
+     * Prints the user operations menu.
+     */
     private static void userOperationsMenu() {
         System.out.print("""
                 \n***** User Operations *****
