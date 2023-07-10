@@ -22,7 +22,7 @@ public class Main {
         boolean exit = false;
         while (!exit) {
             printMainMenu();
-            int choice = scanner.nextInt();
+            int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1 -> adminOperations();
                 case 2 -> userOperations();
@@ -41,7 +41,7 @@ public class Main {
         boolean backToMenu = false;
         do {
             adminOperationsMenu();
-            int choice = scanner.nextInt();
+            int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1 -> createCategory();
                 case 2 -> createPlatform();
@@ -60,11 +60,11 @@ public class Main {
         boolean backToMenu = false;
         do {
             userOperationsMenu();
-            int choice = scanner.nextInt();
+            int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1 -> {
                     System.out.print("Enter the category name to search movies: ");
-                    String categoryName = scanner.next();
+                    String categoryName = scanner.nextLine();
                     appManagementService.listMoviesByCategoryName(categoryName);
                 }
                 case 2 -> backToMenu = true;
@@ -78,7 +78,7 @@ public class Main {
      */
     private static void createCategory() {
         System.out.print("Enter the category name: ");
-        String categoryName = scanner.next();
+        String categoryName = scanner.nextLine();
         Category category = new Category(categoryName);
         appManagementService.addCategoryToApp(category);
     }
@@ -88,7 +88,7 @@ public class Main {
      */
     private static void createPlatform() {
         System.out.print("Enter the platform name: ");
-        String platformName = scanner.next();
+        String platformName = scanner.nextLine();
         Platform platform = new Platform(platformName);
         appManagementService.addPlatformToApp(platform);
     }
@@ -102,11 +102,11 @@ public class Main {
         System.out.println("Categories you added to the app: ");
         appManagementService.listCategories();
         System.out.print("\nEnter the film categories (with a comma) : ");
-        String[] categoriesInputArr = scanner.next().split(",");
+        String[] categoriesInputArr = scanner.nextLine().split(",");
         System.out.println("\nPlatforms you added to the app: ");
         appManagementService.listPlatforms();
         System.out.print("\nEnter the film platforms (with a comma) : ");
-        String[] platformsInputArr = scanner.next().split(",");
+        String[] platformsInputArr = scanner.nextLine().split(",");
         appManagementService.addMovieToApp(movie, categoriesInputArr, platformsInputArr);
         appManagementService.listMovies();
     }
@@ -118,15 +118,15 @@ public class Main {
      */
     private static Movie getMovieFromInput() {
         System.out.print("Enter the film name: ");
-        String filmName = scanner.next();
+        String filmName = scanner.nextLine();
         System.out.print("Enter the film director: ");
-        String director = scanner.next();
+        String director = scanner.nextLine();
         System.out.print("Enter the film release date (dd-MM-yyyy) : ");
-        String releaseDate = scanner.next();
+        String releaseDate = scanner.nextLine();
         System.out.print("Enter the film show times with a comma: ");
-        String[] showTimes = scanner.next().split(",");
+        String[] showTimes = scanner.nextLine().split(",");
         System.out.print("Enter the film IMDB: ");
-        double imdbPoint = scanner.nextDouble();
+        double imdbPoint = Double.parseDouble(scanner.nextLine());
         return new Movie(filmName, director, releaseDate, showTimes, imdbPoint);
     }
 
