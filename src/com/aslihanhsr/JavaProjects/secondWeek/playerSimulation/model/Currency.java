@@ -1,24 +1,24 @@
 package com.aslihanhsr.JavaProjects.secondWeek.playerSimulation.model;
 
 public class Currency {
-    private String currency;
+    private String currencyName;
 
-    public Currency(String currency) {
-        this.currency = currency;
+    public Currency(String currencyName) {
+        this.currencyName = currencyName;
     }
 
-    public String getCurrency() {
-        return currency;
+    public String getCurrencyName() {
+        return currencyName;
     }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
+    public void setCurrencyName(String currencyName) {
+        this.currencyName = currencyName;
     }
 
     @Override
     public String toString() {
         return "Currency{" +
-                "currency='" + currency + '\'' +
+                "currencyName='" + currencyName + '\'' +
                 '}';
     }
 }
