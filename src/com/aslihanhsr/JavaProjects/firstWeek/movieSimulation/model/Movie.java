@@ -61,13 +61,13 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "\n***** Movies *****" + '\n' +
+        return "\n***** Movie *****" + '\n' +
                 "Film Name: " + filmName + '\n' +
                 "Director: '" + director + '\n' +
                 "Release Date:" + releaseDate + '\n' +
                 "Show Times: " + Arrays.toString(showTimes) + '\n' +
                 "IMDB: " + imdb + '\n' +
-                "Categories: " + getCategories()+
+                "Categories: " + getCategories()+'\n' +
                 "Platforms: "+getPlatforms();
     }
 }
