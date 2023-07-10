@@ -11,7 +11,7 @@ public class Team {
     private String president;
     private String stadiumName;
     private BigDecimal budget;
-    private String currency;
+    private Currency currency;
     private String country;
     private List<Award> awards;
 
@@ -75,11 +75,11 @@ public class Team {
         this.budget = budget;
     }
 
-    public String getCurrency() {
+    public Currency getCurrency() {
         return currency;
     }
 
-    public void setCurrency(String currency) {
+    public void setCurrency(Currency currency) {
         this.currency = currency;
     }
 

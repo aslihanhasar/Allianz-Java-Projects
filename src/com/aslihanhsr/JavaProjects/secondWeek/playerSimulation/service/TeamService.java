@@ -9,7 +9,7 @@ import java.util.List;
 public class TeamService {
 
     public Team createTeam(String teamName, String nickName, String colors, String coach, String president,
-                           String stadiumName, BigDecimal budget, String currency, String country) {
+                           String stadiumName, BigDecimal budget, Currency currency, String country) {
 
         Team team = new Team();
         team.setName(teamName);

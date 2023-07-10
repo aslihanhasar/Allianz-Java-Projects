@@ -12,7 +12,7 @@ public class Player {
     private List<Transfer> transferHistory;
     private List<Team> teamList;
     private BigDecimal value;
-    private String currency;
+    private Currency currency;
 
     public String getName() {
         return name;
@@ -78,11 +78,11 @@ public class Player {
         this.value = value;
     }
 
-    public String getCurrency() {
+    public Currency getCurrency() {
         return currency;
     }
 
-    public void setCurrency(String currency) {
+    public void setCurrency(Currency currency) {
         this.currency = currency;
     }
 

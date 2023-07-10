@@ -7,7 +7,7 @@ public class Transfer {
     private Team toTeam;
     private int year;
     private BigDecimal price;
-    private String currency;
+    private Currency currency;
 
     public Team getFromTeam() {
         return fromTeam;
@@ -41,11 +41,11 @@ public class Transfer {
         this.price = price;
     }
 
-    public String getCurrency() {
+    public Currency getCurrency() {
         return currency;
     }
 
-    public void setCurrency(String currency) {
+    public void setCurrency(Currency currency) {
         this.currency = currency;
     }
 
