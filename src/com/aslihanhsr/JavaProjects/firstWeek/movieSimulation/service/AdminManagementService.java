@@ -8,21 +8,36 @@ public class AdminManagementService {
     private final AppManagementService appManagement = new AppManagementService();
     private final Scanner scanner = new Scanner(System.in);
 
-    public void createCategory() {
+    public void adminOperations(){
+        int choice;
+        boolean backToMenu = false;
+        do {
+            adminOperationsMenu();
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1 -> createCategory();
+                case 2 -> createPlatform();
+                case 3->createMovie();
+                case 4->backToMenu=true;
+                default -> System.out.println("Enter a valid choice (1/2/3/4)");
+            }
+        } while (!backToMenu);
+    }
+    private void createCategory() {
         System.out.print("Enter the category name: ");
         String categoryName = scanner.next();
         Category category = new Category(categoryName);
         appManagement.addCategoryToApp(category);
     }
 
-    public void createPlatform() {
+    private void createPlatform() {
         System.out.print("Enter the platform name: ");
         String platformName = scanner.next();
         Platform platform = new Platform(platformName);
         appManagement.addPlatformToApp(platform);
     }
 
-    public void createMovie() {
+    private void createMovie() {
         Movie movie = getMovieFromInput();
         System.out.println("Categories you added to the app: ");
         appManagement.listCategories();
@@ -36,7 +51,7 @@ public class AdminManagementService {
         appManagement.listMovies();
     }
 
-    public void adminOperationsMenu() {
+    private void adminOperationsMenu() {
         System.out.print("""
                 \n***** Admin Operations *****
                 1 - Add Category.
