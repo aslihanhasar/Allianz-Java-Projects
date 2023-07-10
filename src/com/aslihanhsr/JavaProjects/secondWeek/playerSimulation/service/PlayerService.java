@@ -2,6 +2,7 @@ package com.aslihanhsr.JavaProjects.secondWeek.playerSimulation.service;
 
 import com.aslihanhsr.JavaProjects.secondWeek.playerSimulation.model.Player;
 import com.aslihanhsr.JavaProjects.secondWeek.playerSimulation.model.Team;
+import com.aslihanhsr.JavaProjects.secondWeek.playerSimulation.model.Transfer;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -23,13 +24,25 @@ public class PlayerService {
         return player;
     }
 
-    public void addTeamToPlayer(Player player, Team team){
-        if(player.getTeamList()!=null){
+    public void addTeamToPlayer(Player player, Team team) {
+        if (player.getTeamList() != null) {
             player.getTeamList().add(team);
-        }else{
-            List<Team> teamList=new ArrayList<>();
+        } else {
+            List<Team> teamList = new ArrayList<>();
             teamList.add(team);
             player.setTeamList(teamList);
         }
     }
+
+    public void getPlayerTransferHistory(Player player,Transfer transfer) {
+        if (player.getTransferHistory()!= null) {
+            player.getTransferHistory().add(transfer);
+        }else{
+            List<Transfer> playerTransferHistory=new ArrayList<>();
+            playerTransferHistory.add(transfer);
+            player.setTransferHistory(playerTransferHistory);
+        }
+    }
 }
+
+
