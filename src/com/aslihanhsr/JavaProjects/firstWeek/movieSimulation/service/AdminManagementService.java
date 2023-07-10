@@ -8,7 +8,21 @@ public class AdminManagementService {
     private final AppManagementService appManagement = new AppManagementService();
     private final Scanner scanner = new Scanner(System.in);
 
-   
+    public void adminOperations() {
+        int choice;
+        boolean backToMenu = false;
+        do {
+            adminOperationsMenu();
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1 -> createCategory();
+                case 2 -> createPlatform();
+                case 3 -> createMovie();
+                case 4 -> backToMenu = true;
+                default -> System.out.println("Enter a valid choice (1/2/3/4)");
+            }
+        } while (!backToMenu);
+    }
 
     private void createCategory() {
         System.out.print("Enter the category name: ");
