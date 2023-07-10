@@ -47,16 +47,21 @@ public class AppManagementService {
         }
     }
 
+    public void listCategories() {
+        for (Category category : categories) {
+            System.out.println(category);
+        }
+    }
 
-    private void increaseMovieCounter(List<Category> movieCategories) {
-        for (Category movieCategory : movieCategories) {
-            String movieCategoryName = movieCategory.getCategoryName();
-            Category categoryByName = getCategoryByName(movieCategoryName);
-            if (categoryByName != null) {
-                movieCategory.incrementMovieCounter();
-            } else {
-                System.out.println("Category not found.");
-            }
+    public void listPlatforms() {
+        for (Platform platform : platforms) {
+            System.out.println(platform);
+        }
+    }
+
+    public void listMovies() {
+        for (Movie movie : movies) {
+            System.out.println(movie);
         }
     }
 
@@ -108,6 +113,18 @@ public class AppManagementService {
             }
         }
         return null;
+    }
+
+    private void increaseMovieCounter(List<Category> movieCategories) {
+        for (Category movieCategory : movieCategories) {
+            String movieCategoryName = movieCategory.getCategoryName();
+            Category categoryByName = getCategoryByName(movieCategoryName);
+            if (categoryByName != null) {
+                movieCategory.incrementMovieCounter();
+            } else {
+                System.out.println("Category not found.");
+            }
+        }
     }
 
 }
