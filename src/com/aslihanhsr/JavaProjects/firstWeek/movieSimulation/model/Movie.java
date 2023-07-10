@@ -67,7 +67,7 @@ public class Movie {
                 "Release Date:" + releaseDate + '\n' +
                 "Show Times: " + Arrays.toString(showTimes) + '\n' +
                 "IMDB: " + imdb + '\n' +
-                "Categories: " + getCategories()+'\n' +
-                "Platforms: "+getPlatforms();
+                "Categories: " + getCategories() + '\n' +
+                "Platforms: " + getPlatforms();
     }
 }

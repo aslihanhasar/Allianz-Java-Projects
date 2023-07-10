@@ -46,88 +46,89 @@ public class AppManagementService {
                     System.out.println(movie);
                 }
             }
-        }else{
-            System.out.println("No such category found"+categoryName);
+        } else {
+            System.out.println("No such category found" + categoryName);
         }
     }
-        public void listCategories () {
-            for (Category category : categories) {
-                System.out.println(category);
-            }
-        }
 
-        public void listPlatforms () {
-            for (Platform platform : platforms) {
-                System.out.println(platform);
-            }
+    public void listCategories() {
+        for (Category category : categories) {
+            System.out.println(category);
         }
-
-        public void listMovies () {
-            for (Movie movie : movies) {
-                System.out.println(movie);
-            }
-        }
-
-        private boolean addCategoriesToMovie (Movie movie, String[]categoriesInputArr){
-            List<Category> movieCategories = new ArrayList<>();
-            for (String categoryInput : categoriesInputArr) {
-                Category category = getCategoryByName(categoryInput);
-                if (category != null) {
-                    movieCategories.add(category);
-                } else {
-                    System.out.println("No such a category found. " + categoryInput);
-                    return false;
-                }
-            }
-            movie.setCategories(movieCategories);
-            return true;
-        }
-
-        private boolean addPlatformsToMovie (Movie movie, String[]platformsInputArr){
-            List<Platform> moviePlatforms = new ArrayList<>();
-            for (String platformInput : platformsInputArr) {
-                Platform platform = getPlatformByName(platformInput);
-                if (platform != null) {
-                    moviePlatforms.add(platform);
-                } else {
-                    System.out.println("No such a platform found. " + platformInput);
-                    return false;
-                }
-            }
-            movie.setPlatforms(moviePlatforms);
-            return true;
-        }
-
-        private Category getCategoryByName (String categoryName){
-            for (Category category : categories) {
-                boolean categoriesMatch = category.getCategoryName().equalsIgnoreCase(categoryName.trim());
-                if (categoriesMatch) {
-                    return category;
-                }
-            }
-            return null;
-        }
-
-        private Platform getPlatformByName (String platformName){
-            for (Platform platform : platforms) {
-                boolean platformsMatch = platform.getPlatformName().equalsIgnoreCase(platformName.trim());
-                if (platformsMatch) {
-                    return platform;
-                }
-            }
-            return null;
-        }
-
-        private void increaseMovieCounter (List < Category > movieCategories) {
-            for (Category movieCategory : movieCategories) {
-                String movieCategoryName = movieCategory.getCategoryName();
-                Category categoryByName = getCategoryByName(movieCategoryName);
-                if (categoryByName != null) {
-                    movieCategory.incrementMovieCounter();
-                } else {
-                    System.out.println("Category not found.");
-                }
-            }
-        }
-
     }
+
+    public void listPlatforms() {
+        for (Platform platform : platforms) {
+            System.out.println(platform);
+        }
+    }
+
+    public void listMovies() {
+        for (Movie movie : movies) {
+            System.out.println(movie);
+        }
+    }
+
+    private boolean addCategoriesToMovie(Movie movie, String[] categoriesInputArr) {
+        List<Category> movieCategories = new ArrayList<>();
+        for (String categoryInput : categoriesInputArr) {
+            Category category = getCategoryByName(categoryInput);
+            if (category != null) {
+                movieCategories.add(category);
+            } else {
+                System.out.println("No such a category found. " + categoryInput);
+                return false;
+            }
+        }
+        movie.setCategories(movieCategories);
+        return true;
+    }
+
+    private boolean addPlatformsToMovie(Movie movie, String[] platformsInputArr) {
+        List<Platform> moviePlatforms = new ArrayList<>();
+        for (String platformInput : platformsInputArr) {
+            Platform platform = getPlatformByName(platformInput);
+            if (platform != null) {
+                moviePlatforms.add(platform);
+            } else {
+                System.out.println("No such a platform found. " + platformInput);
+                return false;
+            }
+        }
+        movie.setPlatforms(moviePlatforms);
+        return true;
+    }
+
+    private Category getCategoryByName(String categoryName) {
+        for (Category category : categories) {
+            boolean categoriesMatch = category.getCategoryName().equalsIgnoreCase(categoryName.trim());
+            if (categoriesMatch) {
+                return category;
+            }
+        }
+        return null;
+    }
+
+    private Platform getPlatformByName(String platformName) {
+        for (Platform platform : platforms) {
+            boolean platformsMatch = platform.getPlatformName().equalsIgnoreCase(platformName.trim());
+            if (platformsMatch) {
+                return platform;
+            }
+        }
+        return null;
+    }
+
+    private void increaseMovieCounter(List<Category> movieCategories) {
+        for (Category movieCategory : movieCategories) {
+            String movieCategoryName = movieCategory.getCategoryName();
+            Category categoryByName = getCategoryByName(movieCategoryName);
+            if (categoryByName != null) {
+                movieCategory.incrementMovieCounter();
+            } else {
+                System.out.println("Category not found.");
+            }
+        }
+    }
+
+}
