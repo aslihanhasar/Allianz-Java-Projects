@@ -1,8 +1,6 @@
 package com.aslihanhsr.JavaProjects.firstWeek.movieSimulation;
 
-import com.aslihanhsr.JavaProjects.firstWeek.movieSimulation.model.Category;
-import com.aslihanhsr.JavaProjects.firstWeek.movieSimulation.model.Movie;
-import com.aslihanhsr.JavaProjects.firstWeek.movieSimulation.model.Platform;
+import com.aslihanhsr.JavaProjects.firstWeek.movieSimulation.model.*;
 import com.aslihanhsr.JavaProjects.firstWeek.movieSimulation.service.AppManagementService;
 
 import java.util.Scanner;
@@ -12,8 +10,49 @@ public class Main {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+        boolean exit = false;
+        while (!exit) {
+            printMainMenu();
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1 -> adminOperations();
+                case 2 -> userOperations();
+                case 3 -> exit = true;
+                default -> System.out.println("Enter a valid choice (1/2/3)");
+            }
+        }
+    }
 
+    private static void adminOperations() {
+        boolean backToMenu = false;
+        do {
+            adminOperationsMenu();
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1 -> createCategory();
+                case 2 -> createPlatform();
+                case 3 -> createMovie();
+                case 4 -> backToMenu = true;
+                default -> System.out.println("Enter a valid choice (1/2/3/4)");
+            }
+        } while (!backToMenu);
+    }
 
+    private static void userOperations() {
+        boolean backToMenu = false;
+        do {
+            userOperationsMenu();
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1 -> {
+                    System.out.print("Enter the category name to search movies: ");
+                    String categoryName = scanner.next();
+                    appManagementService.listMoviesByCategoryName(categoryName);
+                }
+                case 2 -> backToMenu = true;
+                default -> System.out.println("Enter a valid choice (1/2)");
+            }
+        } while (!backToMenu);
     }
 
     private static void createCategory() {
@@ -57,6 +96,7 @@ public class Main {
         double imdbPoint = scanner.nextDouble();
         return new Movie(filmName, director, releaseDate, showTimes, imdbPoint);
     }
+
     private static void printMainMenu() {
         System.out.print("""
                 \n***** Welcome to the Movie Management App *****
