@@ -8,37 +8,21 @@ public class AdminManagementService {
     private final AppManagementService appManagement = new AppManagementService();
     private final Scanner scanner = new Scanner(System.in);
 
-    public void adminOperations() {
-        int choice;
-        boolean backToMenu = false;
-        do {
-            adminOperationsMenu();
-            choice = scanner.nextInt();
-            switch (choice) {
-                case 1 -> createCategory();
-                case 2 -> createPlatform();
-                case 3 -> createMovie();
-                case 4 -> backToMenu = true;
-                default -> System.out.println("Enter a valid choice (1/2/3/4)");
-            }
-        } while (!backToMenu);
-    }
-
-    private void createCategory() {
+    public void createCategory() {
         System.out.print("Enter the category name: ");
         String categoryName = scanner.next();
         Category category = new Category(categoryName);
         appManagement.addCategoryToApp(category);
     }
 
-    private void createPlatform() {
+    public void createPlatform() {
         System.out.print("Enter the platform name: ");
         String platformName = scanner.next();
         Platform platform = new Platform(platformName);
         appManagement.addPlatformToApp(platform);
     }
 
-    private void createMovie() {
+    public void createMovie() {
         Movie movie = getMovieFromInput();
         System.out.println("Categories you added to the app: ");
         appManagement.listCategories();
@@ -52,6 +36,15 @@ public class AdminManagementService {
         appManagement.listMovies();
     }
 
+    public void adminOperationsMenu() {
+        System.out.print("""
+                \n***** Admin Operations *****
+                1 - Add Category.
+                2 - Add Platform
+                3 - Add Film.
+                4 - Main Menu.
+                Enter your choice:\s""");
+    }
     private Movie getMovieFromInput() {
         System.out.print("Enter the film name: ");
         String filmName = scanner.next();
@@ -66,13 +59,4 @@ public class AdminManagementService {
         return new Movie(filmName, director, releaseDate, showTimes, imdbPoint);
     }
 
-    private void adminOperationsMenu() {
-        System.out.print("""
-                \n***** Admin Operations *****
-                1 - Add Category.
-                2 - Add Platform
-                3 - Add Film.
-                4 - Main Menu.
-                Enter your choice:\s""");
-    }
 }
