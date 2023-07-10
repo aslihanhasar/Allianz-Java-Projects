@@ -5,11 +5,19 @@ import com.aslihanhsr.JavaProjects.firstWeek.movieSimulation.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The AppManagementService class provides methods to manage categories,
+ * platforms, and movies in the movie simulation app.
+ */
 public class AppManagementService {
     private final List<Category> categories;
     private final List<Platform> platforms;
     private final List<Movie> movies;
 
+    /**
+     * Constructs a new instance of AppManagementService
+     * with empty lists of categories, platforms, and movies.
+     */
     public AppManagementService() {
         this.categories = new ArrayList<>();
         this.platforms = new ArrayList<>();
