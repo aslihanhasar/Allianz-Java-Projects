@@ -100,7 +100,7 @@ public class AppManagementService {
 
         private Category getCategoryByName (String categoryName){
             for (Category category : categories) {
-                boolean categoriesMatch = category.getCategoryName().equalsIgnoreCase(categoryName);
+                boolean categoriesMatch = category.getCategoryName().equalsIgnoreCase(categoryName.trim());
                 if (categoriesMatch) {
                     return category;
                 }
@@ -110,7 +110,7 @@ public class AppManagementService {
 
         private Platform getPlatformByName (String platformName){
             for (Platform platform : platforms) {
-                boolean platformsMatch = platform.getPlatformName().equalsIgnoreCase(platformName);
+                boolean platformsMatch = platform.getPlatformName().equalsIgnoreCase(platformName.trim());
                 if (platformsMatch) {
                     return platform;
                 }
