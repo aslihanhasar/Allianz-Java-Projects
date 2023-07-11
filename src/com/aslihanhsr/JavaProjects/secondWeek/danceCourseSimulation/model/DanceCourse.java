@@ -1,5 +1,6 @@
 package com.aslihanhsr.JavaProjects.secondWeek.danceCourseSimulation.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DanceCourse {
@@ -12,6 +13,19 @@ public class DanceCourse {
     private List<PaymentMovement> paymentMovements;
     private List<Instructor> instructors;
     private List<Student> students;
+
+    public DanceCourse(String name, String address, String founder, String taxNumber, String taxOffice) {
+        this.name = name;
+        this.address = address;
+        this.founder = founder;
+        this.taxNumber = taxNumber;
+        this.taxOffice = taxOffice;
+        this.bankAccounts = new ArrayList<>();
+        this.paymentMovements = getPaymentMovements();
+        this.instructors = new ArrayList<>();
+        this.students = new ArrayList<>();
+
+    }
 
     public String getName() {
         return name;
