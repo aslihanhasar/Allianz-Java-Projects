@@ -49,4 +49,15 @@ public class Instructor {
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
+
+    @Override
+    public String toString() {
+        return "Instructor{" +
+                "name='" + name + '\'' +
+                ", branches=" + branches +
+                ", age=" + age +
+                ", sex=" + sex +
+                ", salary=" + salary +
+                '}';
+    }
 }
