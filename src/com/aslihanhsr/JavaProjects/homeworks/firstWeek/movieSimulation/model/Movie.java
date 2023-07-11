@@ -1,4 +1,4 @@
-package com.aslihanhsr.JavaProjects.firstWeek.movieSimulation.model;
+package com.aslihanhsr.JavaProjects.homeworks.firstWeek.movieSimulation.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;

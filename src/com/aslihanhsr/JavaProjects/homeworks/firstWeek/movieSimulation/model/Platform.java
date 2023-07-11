@@ -1,4 +1,4 @@
-package com.aslihanhsr.JavaProjects.firstWeek.movieSimulation.model;
+package com.aslihanhsr.JavaProjects.homeworks.firstWeek.movieSimulation.model;
 
 public class Platform {
     private String platformName;

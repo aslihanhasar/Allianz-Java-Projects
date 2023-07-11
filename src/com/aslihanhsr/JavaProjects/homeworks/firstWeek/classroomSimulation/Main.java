@@ -1,4 +1,4 @@
-package com.aslihanhsr.JavaProjects.firstWeek.classroomSimulation;
+package com.aslihanhsr.JavaProjects.homeworks.firstWeek.classroomSimulation;
 
 import java.util.*;
 

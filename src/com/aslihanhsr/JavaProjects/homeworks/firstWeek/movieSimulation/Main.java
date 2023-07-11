@@ -1,7 +1,10 @@
-package com.aslihanhsr.JavaProjects.firstWeek.movieSimulation;
+package com.aslihanhsr.JavaProjects.homeworks.firstWeek.movieSimulation;
 
 import com.aslihanhsr.JavaProjects.firstWeek.movieSimulation.model.*;
-import com.aslihanhsr.JavaProjects.firstWeek.movieSimulation.service.AppManagementService;
+import com.aslihanhsr.JavaProjects.homeworks.firstWeek.movieSimulation.service.AppManagementService;
+import com.aslihanhsr.JavaProjects.homeworks.firstWeek.movieSimulation.model.Category;
+import com.aslihanhsr.JavaProjects.homeworks.firstWeek.movieSimulation.model.Movie;
+import com.aslihanhsr.JavaProjects.homeworks.firstWeek.movieSimulation.model.Platform;
 
 import java.util.Scanner;
 
