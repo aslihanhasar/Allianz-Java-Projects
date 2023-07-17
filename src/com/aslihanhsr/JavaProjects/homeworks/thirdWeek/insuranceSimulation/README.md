@@ -1,4 +1,4 @@
-# INSURANCE BLOG MANAGEMENT SYSTEM
+# INSURANCE MANAGEMENT SYSTEM
 
 ### The Insurance Management System is a software application that allows agencies to manage insurance-related operations. It provides functionalities for managing agencies, insurance companies, customers, policies, insurance requests, vehicles, accidents, and more.
 
