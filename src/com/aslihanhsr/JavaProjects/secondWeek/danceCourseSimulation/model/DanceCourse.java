@@ -27,6 +27,9 @@ public class DanceCourse {
 
     }
 
+    public DanceCourse(){
+
+    }
     public String getName() {
         return name;
     }
