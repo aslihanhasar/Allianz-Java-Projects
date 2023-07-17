@@ -1,6 +1,8 @@
 package com.aslihanhsr.JavaProjects.homeworks.firstWeek.movieSimulation.service;
 
-import com.aslihanhsr.JavaProjects.homeworks.firstWeek.movieSimulation.model.*;
+import com.aslihanhsr.JavaProjects.homeworks.firstWeek.movieSimulation.model.Category;
+import com.aslihanhsr.JavaProjects.homeworks.firstWeek.movieSimulation.model.Movie;
+import com.aslihanhsr.JavaProjects.homeworks.firstWeek.movieSimulation.model.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
