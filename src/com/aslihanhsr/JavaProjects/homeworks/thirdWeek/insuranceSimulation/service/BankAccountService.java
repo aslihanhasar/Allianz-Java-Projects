@@ -21,21 +21,4 @@ public class BankAccountService {
         return bankAccount;
     }
 
-    /**
-     * Retrieves a bank account from the specified agency that has a balance
-     * equal to or greater than the specified amount.
-     *
-     * @param agency The agency to search for the bank account.
-     * @param amount The minimum required amount in the bank account.
-     * @return The bank account with enough money, or null if none is found.
-     */
-    public BankAccount getAgencyBankAccountWithEnoughMoney(Agency agency, BigDecimal amount) {
-        for (BankAccount bankAccount : agency.getBankAccounts()) {
-            if (bankAccount.getAmount().compareTo(amount) >= 0) {
-                return bankAccount;
-            }
-        }
-        return null;
-    }
-
 }

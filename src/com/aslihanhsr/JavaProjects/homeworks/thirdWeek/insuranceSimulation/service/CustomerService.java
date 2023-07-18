@@ -2,6 +2,7 @@ package com.aslihanhsr.JavaProjects.homeworks.thirdWeek.insuranceSimulation.serv
 
 import com.aslihanhsr.JavaProjects.homeworks.thirdWeek.insuranceSimulation.model.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +98,28 @@ public class CustomerService {
             List<Vehicle> vehicles = new ArrayList<>();
             vehicles.add(vehicle);
             customer.setVehicles(vehicles);
+        }
+    }
+
+    public BankAccount getBankAccountWithEnoughMoney(Customer customer, BigDecimal amount){
+        for(BankAccount bankAccount: customer.getBankAccounts()){
+            if(bankAccount.getAmount().compareTo(amount)>=0){
+                return bankAccount;
+            }
+        }
+        return null;
+    }
+
+    public void acceptProposal(Customer customer,Proposal proposal,InsuranceRequest insuranceRequest){
+        List<InsuranceRequest> customerInsuranceRequests=customer.getInsuranceRequests();
+        for(InsuranceRequest insuranceRequest1:customerInsuranceRequests){
+            if(insuranceRequest1.equals(insuranceRequest)){//customera hazırlanan ins req ile par eşit mi
+                for(Proposal proposal1:insuranceRequest.getProposals()){
+                    if(proposal1.equals(proposal)){
+
+                    }
+                }
+            }
         }
     }
 }

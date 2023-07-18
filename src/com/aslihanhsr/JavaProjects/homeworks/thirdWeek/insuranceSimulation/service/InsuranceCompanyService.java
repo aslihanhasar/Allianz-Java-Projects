@@ -79,4 +79,13 @@ public class InsuranceCompanyService {
         }
     }
 
+    public BankAccount getBankAccountWithEnoughMoney(InsuranceCompany insuranceCompany,BigDecimal amount){
+        for(BankAccount bankAccount:insuranceCompany.getBankAccounts()){
+            if(bankAccount.getAmount().compareTo(amount)>=0){
+                return bankAccount;
+            }
+        }
+        return null;
+    }
+
 }
