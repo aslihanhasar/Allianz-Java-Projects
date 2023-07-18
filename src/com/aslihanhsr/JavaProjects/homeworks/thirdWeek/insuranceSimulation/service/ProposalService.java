@@ -3,7 +3,7 @@ package com.aslihanhsr.JavaProjects.homeworks.thirdWeek.insuranceSimulation.serv
 import com.aslihanhsr.JavaProjects.homeworks.thirdWeek.insuranceSimulation.model.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class ProposalService {
 
@@ -17,12 +17,11 @@ public class ProposalService {
      * @param endDate          The end date of the proposal.
      * @param expireDate       The expiration date of the proposal.
      * @param discountPrice    The discount price of the proposal.
-     * @param isApproved       The approval status of the proposal.
      * @return The created proposal.
      */
     public Proposal createProposal(InsuranceCompany insuranceCompany, Vehicle vehicle,
-                                   BigDecimal offerPrice, Date startDate, Date endDate,
-                                   Date expireDate, BigDecimal discountPrice, boolean isApproved) {
+                                   BigDecimal offerPrice, LocalDate startDate, LocalDate endDate,
+                                   LocalDate expireDate, BigDecimal discountPrice) {
         Proposal proposal = new Proposal();
         proposal.setCompany(insuranceCompany);
         proposal.setVehicle(vehicle);
@@ -31,7 +30,6 @@ public class ProposalService {
         proposal.setEndDate(endDate);
         proposal.setExpireDate(expireDate);
         proposal.setDiscountPrice(discountPrice);
-        proposal.setApproved(isApproved);
         return proposal;
     }
 }
