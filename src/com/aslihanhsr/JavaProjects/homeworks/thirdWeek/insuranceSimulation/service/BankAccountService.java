@@ -10,14 +10,12 @@ public class BankAccountService {
      *
      * @param bankName    The name of the bank.
      * @param ibanNo      The IBAN number of the account.
-     * @param companyName The name of the company associated with the account.
      * @param amount      The initial amount of money in the account.
      * @return The created bank account.
      */
-    public BankAccount createBankAccount(String bankName, String ibanNo, String companyName, BigDecimal amount) {
+    public BankAccount createBankAccount(String bankName, String ibanNo, BigDecimal amount) {
         BankAccount bankAccount = new BankAccount();
         bankAccount.setBankName(bankName);
-        bankAccount.setCompanyName(companyName);
         bankAccount.setIbanNo(ibanNo);
         bankAccount.setAmount(amount);
         return bankAccount;
