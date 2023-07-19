@@ -88,4 +88,8 @@ public class InsuranceCompanyService {
         return null;
     }
 
+    public BigDecimal getCalculatedCommissionAmount(InsuranceCompany insuranceCompany,BigDecimal totalAmount){
+       BigDecimal companyCommission= insuranceCompany.getCommission();
+       return totalAmount.multiply(companyCommission).divide(new BigDecimal(100));
+    }
 }

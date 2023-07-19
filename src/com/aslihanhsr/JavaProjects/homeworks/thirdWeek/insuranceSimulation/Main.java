@@ -4,18 +4,20 @@ import com.aslihanhsr.JavaProjects.homeworks.thirdWeek.insuranceSimulation.model
 import com.aslihanhsr.JavaProjects.homeworks.thirdWeek.insuranceSimulation.service.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.Month;
 
 public class Main {
     public static void main(String[] args) {
         AgencyService agencyService = new AgencyService();
         Agency agency = agencyService.createAgency("MOM");
-        System.out.println(agency.toString());
+        System.out.println(agency);
 
         BankAccountService bankAccountService = new BankAccountService();
         BankAccount bankAccount = bankAccountService.createBankAccount("Ziraat Bankasi", "TR20300000048476353", BigDecimal.ZERO);
 
         agencyService.addBankAccountToAgency(agency, bankAccount);
-        System.out.println(agency.toString());
+        System.out.println(agency);
 
         InsuranceCompanyService insuranceCompanyService = new InsuranceCompanyService();
         InsuranceCompany insuranceCompany = insuranceCompanyService.createInsuranceCompany("Allianz", "727384849",
@@ -43,5 +45,21 @@ public class Main {
 
         customerService.addVehicleToCustomer(customer, vehicle);
         System.out.println(customer);
+
+        InsuranceRequestService insuranceRequestService=new InsuranceRequestService();
+        InsuranceRequest insuranceRequest =insuranceRequestService.createInsuranceRequest(vehicle,InsuranceType.COMPULSORY_TRAFFIC_INSURANCE);
+
+        customerService.addInsuranceRequestToCustomer(customer,insuranceRequest);
+
+        LocalDate startDate=LocalDate.of(2010, Month.APRIL,15);
+        LocalDate endDate=LocalDate.of(2011,Month.APRIL,15);
+        LocalDate expireDate=startDate.plusDays(3);
+
+        ProposalService proposalService=new ProposalService();
+        Proposal proposal= proposalService.createProposal(insuranceCompany,vehicle,new BigDecimal(1000),startDate,
+                endDate,expireDate,new BigDecimal(100));
+        insuranceRequestService.addProposalToInsuranceRequest(insuranceRequest,proposal);
+
+        customerService.acceptProposal(agency,customer,proposal,insuranceRequest);
     }
 }

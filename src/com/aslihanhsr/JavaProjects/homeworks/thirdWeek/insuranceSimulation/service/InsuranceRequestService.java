@@ -12,9 +12,10 @@ public class InsuranceRequestService {
      * @param vehicle The vehicle associated with the insurance request.
      * @return The created insurance request.
      */
-    public InsuranceRequest createInsuranceRequest(Vehicle vehicle) {
+    public InsuranceRequest createInsuranceRequest(Vehicle vehicle,InsuranceType insuranceType) {
         InsuranceRequest insuranceRequest = new InsuranceRequest();
         insuranceRequest.setVehicle(vehicle);
+        insuranceRequest.setInsuranceType(insuranceType);
         return insuranceRequest;
     }
 

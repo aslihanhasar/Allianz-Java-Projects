@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerService {
+
+    ProposalService proposalService = new ProposalService();
+    AgencyService agencyService = new AgencyService();
+    PaymentMovementService paymentMovementService = new PaymentMovementService();
+    InsuranceCompanyService insuranceCompanyService = new InsuranceCompanyService();
+
     /**
      * Creates a new customer with the specified name and customer type.
      *
@@ -101,23 +107,82 @@ public class CustomerService {
         }
     }
 
-    public BankAccount getBankAccountWithEnoughMoney(Customer customer, BigDecimal amount){
-        for(BankAccount bankAccount: customer.getBankAccounts()){
-            if(bankAccount.getAmount().compareTo(amount)>=0){
+    public BankAccount getBankAccountWithEnoughMoney(Customer customer, BigDecimal amount) {
+        for (BankAccount bankAccount : customer.getBankAccounts()) {
+            if (bankAccount.getAmount().compareTo(amount) >= 0) {
                 return bankAccount;
             }
         }
         return null;
     }
 
-    public void acceptProposal(Customer customer,Proposal proposal,InsuranceRequest insuranceRequest){
-        List<InsuranceRequest> customerInsuranceRequests=customer.getInsuranceRequests();
-        for(InsuranceRequest insuranceRequest1:customerInsuranceRequests){
-            if(insuranceRequest1.equals(insuranceRequest)){//customera hazırlanan ins req ile par eşit mi
-                for(Proposal proposal1:insuranceRequest.getProposals()){
-                    if(proposal1.equals(proposal)){
+    public void acceptProposal(Agency agency, Customer customer, Proposal proposal, InsuranceRequest insuranceRequest) {
+        List<InsuranceRequest> customerInsuranceRequests = customer.getInsuranceRequests();
+        for (InsuranceRequest insuranceRequest1 : customerInsuranceRequests) {
+            if (insuranceRequest1.equals(insuranceRequest)) {
+                for (Proposal proposal1 : insuranceRequest.getProposals()) {
+                    if (proposal1.equals(proposal)) {
+                        BigDecimal totalOfferPrice = proposalService.calculateDiscountedPrice(proposal);
+                        BankAccount customerBankAccount = getBankAccountWithEnoughMoney(customer, totalOfferPrice);
+                        if (customerBankAccount != null) {
+                            BigDecimal remainingCustomerAmount = customerBankAccount.getAmount().subtract(totalOfferPrice);
+                            customerBankAccount.setAmount(remainingCustomerAmount);
+
+                            PaymentMovement customerPaymentMovement = paymentMovementService.
+                                    createPaymentMovement(customerBankAccount,
+                                            "Payment for the proposal. " + proposal,
+                                            MovementType.OUTCOME, totalOfferPrice);
+                            addPaymentMovementToCustomer(customer, customerPaymentMovement);
+                            System.out.println("Movements: " + customerPaymentMovement);
+
+
+                            InsuranceCompany insuranceCompany = proposal.getCompany();
+                            if (insuranceCompany.getBankAccounts() != null) {
+                                BankAccount companyBankAccount = insuranceCompany.getBankAccounts().get(0);
+                                companyBankAccount.setAmount(totalOfferPrice);
+
+                                PaymentMovement companyRevenuePaymentMovement = paymentMovementService.
+                                        createPaymentMovement(companyBankAccount,
+                                                "Revenue for the proposal. " + proposal,
+                                                MovementType.INCOME, totalOfferPrice);
+                                insuranceCompanyService.addPaymentMovementToInsuranceCompany
+                                        (insuranceCompany, companyRevenuePaymentMovement);
+                                System.out.println("Movements: " + companyRevenuePaymentMovement);
+
+                                BigDecimal calculatedCommissionAmount = insuranceCompanyService
+                                        .getCalculatedCommissionAmount(insuranceCompany, totalOfferPrice);
+                                BigDecimal currentCompanyBalance=companyBankAccount.
+                                        getAmount().subtract(calculatedCommissionAmount);
+                                companyBankAccount.setAmount(currentCompanyBalance);
+
+                                PaymentMovement companyPaymentMovement = paymentMovementService.
+                                        createPaymentMovement(companyBankAccount,
+                                                "Payment for the commission.  " + agency,
+                                                MovementType.OUTCOME, calculatedCommissionAmount);
+                                System.out.println("Movements: "+companyPaymentMovement);
+
+                                if (agency.getBankAccounts() != null) {
+                                    BankAccount agencyBankAccount = agency.getBankAccounts().get(0);
+                                    agencyBankAccount.setAmount(calculatedCommissionAmount);
+                                    PaymentMovement agencyPaymentMovement = paymentMovementService.
+                                            createPaymentMovement(agencyBankAccount,
+                                                    "Commission revenue for the proposal. " + proposal,
+                                                    MovementType.INCOME, calculatedCommissionAmount);
+                                    agencyService.addPaymentMovementToAgency(agency, agencyPaymentMovement);
+                                    System.out.println("Movements: " + agencyPaymentMovement);
+
+                                    proposal.setApproved(true);
+                                    System.out.println(proposal);
+                                }
+                            }
+
+
+                        } else {
+                            System.out.println("No such a bank account found.");
+                        }
 
                     }
+
                 }
             }
         }

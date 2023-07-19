@@ -32,4 +32,12 @@ public class ProposalService {
         proposal.setDiscountPrice(discountPrice);
         return proposal;
     }
+
+    public BigDecimal calculateDiscountedPrice(Proposal proposal){
+        BigDecimal discountPrice=proposal.getDiscountPrice();
+        if(discountPrice!=null){
+            return proposal.getOfferPrice().subtract(discountPrice);
+        }
+        return proposal.getOfferPrice();
+    }
 }

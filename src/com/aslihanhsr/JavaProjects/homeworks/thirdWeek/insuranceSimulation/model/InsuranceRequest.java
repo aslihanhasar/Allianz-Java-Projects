@@ -6,6 +6,7 @@ public class InsuranceRequest {
     private Vehicle vehicle;
     private List<Proposal> proposals;
     private List<Policy> policies;
+    private InsuranceType insuranceType;
 
     public List<Proposal> getProposals() {
         return proposals;
@@ -31,12 +32,21 @@ public class InsuranceRequest {
         this.policies = policies;
     }
 
+    public InsuranceType getInsuranceType() {
+        return insuranceType;
+    }
+
+    public void setInsuranceType(InsuranceType insuranceType) {
+        this.insuranceType = insuranceType;
+    }
+
     @Override
     public String toString() {
         return "InsuranceRequest{" +
                 "vehicle=" + vehicle +
                 ", proposals=" + proposals +
                 ", policies=" + policies +
+                ", insuranceType=" + insuranceType +
                 '}';
     }
 }
