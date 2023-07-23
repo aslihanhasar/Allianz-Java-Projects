@@ -1,7 +1,6 @@
 package com.aslihanhasar.JavaProjects.practices.secondWeek.danceCourseSimulation.service;
 
 import com.aslihanhasar.JavaProjects.practices.secondWeek.danceCourseSimulation.model.*;
-import com.aslihanhsr.JavaProjects.practices.secondWeek.danceCourseSimulation.model.*;
 
 import java.util.List;
 

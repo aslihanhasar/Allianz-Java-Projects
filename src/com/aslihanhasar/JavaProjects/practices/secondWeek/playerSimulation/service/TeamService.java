@@ -1,7 +1,6 @@
 package com.aslihanhasar.JavaProjects.practices.secondWeek.playerSimulation.service;
 
 import com.aslihanhasar.JavaProjects.practices.secondWeek.playerSimulation.model.*;
-import com.aslihanhsr.JavaProjects.practices.secondWeek.playerSimulation.model.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

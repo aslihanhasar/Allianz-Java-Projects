@@ -4,7 +4,6 @@ import com.aslihanhasar.JavaProjects.practices.secondWeek.playerSimulation.model
 import com.aslihanhasar.JavaProjects.practices.secondWeek.playerSimulation.service.PlayerService;
 import com.aslihanhasar.JavaProjects.practices.secondWeek.playerSimulation.service.TeamService;
 import com.aslihanhasar.JavaProjects.practices.secondWeek.playerSimulation.service.TransferService;
-import com.aslihanhsr.JavaProjects.practices.secondWeek.playerSimulation.model.*;
 
 import java.math.BigDecimal;
 
