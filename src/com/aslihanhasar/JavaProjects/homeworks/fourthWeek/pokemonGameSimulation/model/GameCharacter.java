@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameCharacter {
-    private String name;
+    private final String name;
     private Power power;
     private List<Pokemon> pokemons;
 
@@ -16,10 +16,6 @@ public class GameCharacter {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Power getPower() {
