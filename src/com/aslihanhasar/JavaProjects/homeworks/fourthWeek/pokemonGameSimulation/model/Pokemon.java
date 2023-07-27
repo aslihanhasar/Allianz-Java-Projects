@@ -1,13 +1,14 @@
 package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model;
 
 public abstract class Pokemon {
-    private Long id;
-    private String name;
+    private final Long id;
+    private final String name;
     private int health;
     private int damage;
     private Power power;
 
     public Pokemon(Long id,String name, int health, int damage, Power power) {
+        this.id=id;
         this.name = name;
         this.health = health;
         this.damage = damage;
@@ -18,16 +19,8 @@ public abstract class Pokemon {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getHealth() {
