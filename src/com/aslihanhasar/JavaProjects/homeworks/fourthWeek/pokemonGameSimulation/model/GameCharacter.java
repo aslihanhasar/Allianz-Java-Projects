@@ -5,13 +5,13 @@ import java.util.List;
 
 public class GameCharacter {
     private String name;
-    private SpecialPower specialPower;
+    private Power power;
     private List<Pokemon> pokemons;
 
-    public GameCharacter(String name,SpecialPower specialPower){
-        this.name=name;
-        this.specialPower=specialPower;
-        pokemons=new ArrayList<>();
+    public GameCharacter(String name, Power power) {
+        this.name = name;
+        this.power = power;
+        this.pokemons=new ArrayList<>();
     }
 
     public String getName() {
@@ -22,12 +22,12 @@ public class GameCharacter {
         this.name = name;
     }
 
-    public SpecialPower getSpecialPower() {
-        return specialPower;
+    public Power getPower() {
+        return power;
     }
 
-    public void setSpecialPower(SpecialPower specialPower) {
-        this.specialPower = specialPower;
+    public void setPower(Power power) {
+        this.power = power;
     }
 
     public List<Pokemon> getPokemons() {
@@ -42,7 +42,7 @@ public class GameCharacter {
     public String toString() {
         return "GameCharacter{" +
                 "name='" + name + '\'' +
-                ", specialPower=" + specialPower +
+                ", power=" + power +
                 ", pokemons=" + pokemons +
                 '}';
     }
