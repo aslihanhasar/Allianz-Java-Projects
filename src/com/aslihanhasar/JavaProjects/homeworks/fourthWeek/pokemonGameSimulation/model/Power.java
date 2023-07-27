@@ -1,9 +1,17 @@
 package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model;
 
-public class Power {
+public abstract class Power {
     private String name;
     private int damage;
     private int remainRight;
+    private PowerType powerType;
+
+    public Power(String name, int damage, int remainRight, PowerType powerType) {
+        this.name = name;
+        this.damage = damage;
+        this.remainRight = remainRight;
+        this.powerType = powerType;
+    }
 
     public String getName() {
         return name;
@@ -29,12 +37,21 @@ public class Power {
         this.remainRight = remainRight;
     }
 
+    public PowerType getPowerType() {
+        return powerType;
+    }
+
+    public void setPowerType(PowerType powerType) {
+        this.powerType = powerType;
+    }
+
     @Override
     public String toString() {
         return "Power{" +
                 "name='" + name + '\'' +
                 ", damage=" + damage +
                 ", remainRight=" + remainRight +
+                ", powerType=" + powerType +
                 '}';
     }
 }
