@@ -2,6 +2,6 @@ package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation
 
 public class Ash extends GameCharacter{
     public Ash(Power power) {
-        super(2L,"Ash", power);
+        super(2,"Ash", power);
     }
 }

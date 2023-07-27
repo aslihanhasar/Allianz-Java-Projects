@@ -2,6 +2,6 @@ package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation
 
 public class Brock extends GameCharacter {
     public Brock( Power power) {
-        super(3L,"Brock", power);
+        super(3,"Brock", power);
     }
 }

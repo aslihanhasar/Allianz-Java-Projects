@@ -2,6 +2,6 @@ package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation
 
 public class Pikachu extends Pokemon{
     public Pikachu(Power power) {
-        super(3L,"Pikachu",100,8,power);
+        super(3,"Pikachu",100,8,power);
     }
 }

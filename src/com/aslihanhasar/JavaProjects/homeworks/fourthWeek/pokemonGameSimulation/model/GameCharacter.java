@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class GameCharacter {
-    private final Long id;
+    private final int id;
     private final String name;
     private Power power;
     private List<Pokemon> pokemons;
 
-    public GameCharacter(Long id,String name, Power power) {
+    public GameCharacter(int id,String name, Power power) {
         this.id=id;
         this.name = name;
         this.power = power;
         this.pokemons=new ArrayList<>();
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
