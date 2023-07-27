@@ -1,8 +1,16 @@
 package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model;
 
-public abstract class PowerType {
+public class PowerType {
     private SuperPowerEnum superPowerEnum;
     private StrategyPowerEnum strategyPowerEnum;
+
+    public PowerType(SuperPowerEnum superPowerEnum) {
+        this.superPowerEnum = superPowerEnum;
+    }
+
+    public PowerType(StrategyPowerEnum strategyPowerEnum) {
+        this.strategyPowerEnum = strategyPowerEnum;
+    }
 
     public SuperPowerEnum getSuperPowerEnum() {
         return superPowerEnum;
