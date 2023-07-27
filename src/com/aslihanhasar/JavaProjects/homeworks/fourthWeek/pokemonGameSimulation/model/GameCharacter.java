@@ -3,7 +3,7 @@ package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameCharacter {
+public abstract class GameCharacter {
     private final String name;
     private Power power;
     private List<Pokemon> pokemons;
