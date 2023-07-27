@@ -2,6 +2,6 @@ package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation
 
 public class Jessie extends GameCharacter{
     public Jessie(Power power) {
-        super("Jessie", power);
+        super(4L,"Jessie", power);
     }
 }
