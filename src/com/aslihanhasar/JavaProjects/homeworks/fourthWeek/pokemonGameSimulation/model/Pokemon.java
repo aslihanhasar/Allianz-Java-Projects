@@ -50,7 +50,8 @@ public abstract class Pokemon {
     @Override
     public String toString() {
         return "Pokemon{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", health=" + health +
                 ", damage=" + damage +
                 ", power=" + power +

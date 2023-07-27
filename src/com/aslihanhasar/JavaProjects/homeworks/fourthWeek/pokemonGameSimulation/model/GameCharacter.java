@@ -43,7 +43,8 @@ public abstract class GameCharacter {
     @Override
     public String toString() {
         return "GameCharacter{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", power=" + power +
                 ", pokemons=" + pokemons +
                 '}';
