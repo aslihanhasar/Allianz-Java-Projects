@@ -7,17 +7,8 @@ public abstract class PowerType {
     public SuperPowerEnum getSuperPowerEnum() {
         return superPowerEnum;
     }
-
-    public void setSuperPowerEnum(SuperPowerEnum superPowerEnum) {
-        this.superPowerEnum = superPowerEnum;
-    }
-
     public StrategyPowerEnum getStrategyPowerEnum() {
         return strategyPowerEnum;
-    }
-
-    public void setStrategyPowerEnum(StrategyPowerEnum strategyPowerEnum) {
-        this.strategyPowerEnum = strategyPowerEnum;
     }
 
 }
