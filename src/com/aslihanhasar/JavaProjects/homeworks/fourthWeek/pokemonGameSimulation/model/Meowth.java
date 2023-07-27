@@ -2,6 +2,6 @@ package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation
 
 public class Meowth extends Pokemon{
     public Meowth(Power power) {
-        super("Meowth",100,9,power);
+        super(5L,"Meowth",100,9,power);
     }
 }

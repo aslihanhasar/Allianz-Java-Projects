@@ -1,16 +1,25 @@
 package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model;
 
 public abstract class Pokemon {
+    private Long id;
     private String name;
     private int health;
     private int damage;
     private Power power;
 
-    public Pokemon(String name, int health, int damage, Power power) {
+    public Pokemon(Long id,String name, int health, int damage, Power power) {
         this.name = name;
         this.health = health;
         this.damage = damage;
         this.power = power;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

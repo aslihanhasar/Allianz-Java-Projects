@@ -3,6 +3,6 @@ package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation
 public class Charmander extends Pokemon{
 
     public Charmander( Power power) {
-        super("Charmander",100,10,power);
+        super(2L,"Charmander",100,10,power);
     }
 }
