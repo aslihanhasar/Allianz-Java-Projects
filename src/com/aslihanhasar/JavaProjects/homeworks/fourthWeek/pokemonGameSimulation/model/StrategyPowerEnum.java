@@ -3,31 +3,23 @@ package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation
 import java.util.EnumSet;
 
 public enum StrategyPowerEnum {
-    DEFENSIVE(0.8),
-    OFFENSIVE(0.4),
-    BALANCED(0.5),
-    AGGRESSIVE(0.2);
+    DEFENSIVE(80),
+    OFFENSIVE(40),
+    BALANCED(50),
+    AGGRESSIVE(20);
 
-    private double defenseChance;
+    private int defenseChance;
 
-    StrategyPowerEnum(double defenseChance) {
+    StrategyPowerEnum(int defenseChance) {
         this.defenseChance = defenseChance;
     }
 
-    public double getDefenseChance() {
+    public int getDefenseChance() {
         return defenseChance;
     }
 
-    public void setDefenseChance(double defenseChance) {
+    public void setDefenseChance(int defenseChance) {
         this.defenseChance = defenseChance;
-    }
-
-    public static StrategyPowerEnum getStrategyType() {
-        var strategyTypes = EnumSet.allOf(StrategyPowerEnum.class);
-        for (StrategyPowerEnum strategyType : strategyTypes) {
-            return strategyType;
-        }
-        return null;
     }
 
 }
