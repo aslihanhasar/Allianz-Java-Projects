@@ -2,7 +2,6 @@ package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation
 
 import com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -38,7 +37,7 @@ public class PlayerService {
     public void selectCharacter(Game game, Player player) {
         System.out.print("Enter the id of the character you want to select: ");
         int characterId = scanner.nextInt();
-        GameCharacter gameCharacter = getGameCharacterById(game, characterId);
+        GameCharacter gameCharacter = characterService.getGameCharacterById(game, characterId);
         if (gameCharacter != null) {
             int playerId = player.getId();
             switch (playerId) {
@@ -54,7 +53,7 @@ public class PlayerService {
     public void selectPokemon(Game game, Player player) {
         System.out.print("Enter the id of the pokemon you want to select: ");
         int pokemonId = scanner.nextInt();
-        Pokemon pokemon = getGamePokemonById(game, pokemonId);
+        Pokemon pokemon = pokemonService.getGamePokemonById(game, pokemonId);
         if (pokemon != null) {
             int playerId = player.getId();
             switch (playerId) {
@@ -88,19 +87,59 @@ public class PlayerService {
             player1.getGameCharacter().getPokemons().remove(player1Pokemon);
             player1Pokemon.setHealth(100);
             player2.getGameCharacter().getPokemons().add(player1Pokemon);
-            addNewPokemonToLoserPlayer(game,player1);
+            addNewPokemonToLoserPlayer(game, player1);
         } else {
             Pokemon player2Pokemon = player2.getGameCharacter().getPokemons().get(0);
             player2.getGameCharacter().getPokemons().remove(player2Pokemon);
             player2Pokemon.setHealth(100);
             player1.getGameCharacter().getPokemons().add(player2Pokemon);
-            addNewPokemonToLoserPlayer(game,player2);
+            addNewPokemonToLoserPlayer(game, player2);
         }
     }
 
-     private void addNewPokemonToLoserPlayer(Game game, Player player) {
+    public int executeStrategyPowerAndGetDamage(Player player) {
+        System.out.println("""
+                Do you want to use the character's strategy power ?
+                1 - Use strategy power
+                2 - Not use strategy power.
+                Enter your choice (1/2) :
+                """);
+        int choice = scanner.nextInt();
+        int damage = player.getGameCharacter().getPower().getDamage();
+        if (choice == 1) {
+            GameCharacter playerCharacter= player.getGameCharacter();
+            boolean powerRightZero = characterService.isCharacterPowerRightZero(playerCharacter);
+            if (powerRightZero) {
+                damage = 0;
+            }
+            return damage;
+        }
+        return 0;
+    }
+
+    public int executeSuperPowerAndGetDamage(Player player) {
+        List<Pokemon> pokemons = player.getGameCharacter().getPokemons();
+        int playerPokemonCount = pokemons.size();
+        int damage = 0;
+        if (playerPokemonCount == 1) {
+            Pokemon pokemon = pokemons.get(0);
+            damage = pokemonService.getPokemonDamageWithSuperPower(pokemon);
+        } else {
+            pokemonService.listPokemons(player);
+            System.out.println("Which pokemon would you like to use super power for?" + "\n" +
+                    "Enter the pokemon id: ");
+            int pokemonId = scanner.nextInt();
+            Pokemon pokemon = pokemonService.getPlayerPokemonById(player, pokemonId);
+            if (pokemon != null) {
+                damage = pokemonService.getPokemonDamageWithSuperPower(pokemon);
+            }
+        }
+        return damage;
+    }
+
+    private void addNewPokemonToLoserPlayer(Game game, Player player) {
         List<Pokemon> gamePokemons = game.getGamePokemons();
-        Pokemon pokemonWithLowestDamage=gamePokemons.get(0);
+        Pokemon pokemonWithLowestDamage = gamePokemons.get(0);
         int minDamage = 10;
         for (Pokemon pokemon : gamePokemons) {
             if (pokemon.getDamage() < minDamage) {
@@ -111,6 +150,7 @@ public class PlayerService {
         player.getGameCharacter().getPokemons().add(pokemonWithLowestDamage);
         game.getGamePokemons().remove(pokemonWithLowestDamage);
     }
+
     public boolean isPlayerLost(Player player) {
         return isPlayerHealthZero(player);
     }
@@ -123,27 +163,6 @@ public class PlayerService {
             }
         }
         return false;
-    }
-
-    private Pokemon getGamePokemonById(Game game, int id) {
-        List<Pokemon> gamePokemons = game.getGamePokemons();
-        for (Pokemon pokemon : gamePokemons) {
-            if (pokemon.getId() == id) {
-                return pokemon;
-            }
-        }
-        return null;
-    }
-
-    private GameCharacter getGameCharacterById(Game game, int id) {
-        List<GameCharacter> gameCharacters = game.getGameCharacters();
-        for (GameCharacter gameCharacter : gameCharacters) {
-            if (gameCharacter.getId() == id) {
-                return gameCharacter;
-            }
-        }
-        return null;
-
     }
 
     private int rollDice() {
