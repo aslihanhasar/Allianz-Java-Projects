@@ -31,6 +31,43 @@ public class PokemonService {
         }
         return damage;
     }
+    public void updatePokemonDamageWithWeather(Pokemon pokemon) {
+        WeatherType weatherType=WeatherType.getRandomizeWeatherType();
+        String powerName=pokemon.getPower().getPowerType().getStrategyPowerEnum().name();
+        int pokemonNormalDamage=pokemon.getDamage();
+        int pokemonPowerDamage=pokemon.getPower().getDamage();
+        if(weatherType!=null) {
+            int weatherImpact=weatherType.getWeatherImpact();
+            switch (weatherType) {
+                case SUNNY ->{
+                    if(powerName.equalsIgnoreCase(SuperPowerEnum.WATER.name())){
+                        pokemonNormalDamage-=weatherImpact;
+                        pokemonPowerDamage-=weatherImpact;
+                    }
+                }
+                case RAINY -> {
+                    if(powerName.equalsIgnoreCase(SuperPowerEnum.FIRE.name())){
+                        pokemonNormalDamage-=weatherImpact;
+                        pokemonPowerDamage-=weatherImpact;
+                    }
+                }
+                case SAND_STORM -> {
+                    if(powerName.equalsIgnoreCase(SuperPowerEnum.EARTH.name())){
+                        pokemonNormalDamage-=weatherImpact;
+                        pokemonPowerDamage-=weatherImpact;
+                    }
+                }
+                case ELECTRIC_STORM -> {
+                    if(powerName.equalsIgnoreCase(SuperPowerEnum.ELECTRICITY.name())){
+                        pokemonNormalDamage-=weatherImpact;
+                        pokemonPowerDamage-=weatherImpact;
+                    }
+                }
+            }
+        }
+        pokemon.setDamage(pokemonNormalDamage);
+        pokemon.getPower().setDamage(pokemonPowerDamage);
+    }
 
     public void listPokemons(Player player) {
         List<Pokemon> pokemons = player.getGameCharacter().getPokemons();
