@@ -31,15 +31,15 @@ public class LoadService {
     }
 
     public List<Pokemon> loadPokemons() {
-        Power waterPower = new SuperPower("Super Water Power",
+        Power waterPower = new SuperPower("Water",
                 2, 3, new PowerType(SuperPowerEnum.WATER));
-        Power firePower = new SuperPower("Super Fire Power",
+        Power firePower = new SuperPower("Fire",
                 5, 3, new PowerType(SuperPowerEnum.FIRE));
-        Power electricityPower = new SuperPower("Super Electricity Power",
+        Power electricityPower = new SuperPower("Electricity",
                 4, 3, new PowerType(SuperPowerEnum.ELECTRICITY));
-        Power earthPower = new SuperPower("Super Earth Power",
+        Power earthPower = new SuperPower("Earth",
                 3, 3, new PowerType(SuperPowerEnum.EARTH));
-        Power talkPower = new SuperPower("Super Talk Power",
+        Power talkPower = new SuperPower("Talk",
                 3, 3, new PowerType(SuperPowerEnum.TALK));
 
         Pokemon squirtle = new Squirtle(waterPower);
