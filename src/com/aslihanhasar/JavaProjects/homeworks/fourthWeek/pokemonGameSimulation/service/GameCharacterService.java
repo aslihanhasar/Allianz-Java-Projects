@@ -1,11 +1,10 @@
 package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.service;
 
+import com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model.Game;
 import com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model.*;
 
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Random;
-
 
 public class GameCharacterService {
 
@@ -17,12 +16,11 @@ public class GameCharacterService {
             }
         }
         return null;
-
     }
 
     public void updateCharacterDamageWithPower(GameCharacter gameCharacter) {
         String powerName = gameCharacter.getPower().getPowerType().getStrategyPowerEnum().name();
-        int powerDamage = gameCharacter.getPower().getDamage();
+        int powerDamage=0;
         var powerTypes = EnumSet.allOf(StrategyPowerEnum.class);
         for (StrategyPowerEnum powerType : powerTypes) {
             if (powerType.name().equalsIgnoreCase(powerName)) {
@@ -30,11 +28,14 @@ public class GameCharacterService {
                 boolean blockAttack = isCharacterBlockAttack(defenseChance);
                 if (blockAttack) {
                     powerDamage = 0;
-                    break;
+                    System.out.println("Character blocked the move with strategy. "+powerDamage);
+                }else{
+                    System.out.println("Character could not block the move with strategy.");
+                    powerDamage = gameCharacter.getPower().getDamage();
                 }
             }
+            gameCharacter.getPower().setDamage(powerDamage);
         }
-        gameCharacter.getPower().setDamage(powerDamage);
     }
 
     public boolean isCharacterPowerRightZero(GameCharacter gameCharacter) {

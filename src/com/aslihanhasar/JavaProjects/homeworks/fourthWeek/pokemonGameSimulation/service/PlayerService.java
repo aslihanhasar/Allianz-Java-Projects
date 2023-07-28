@@ -1,5 +1,6 @@
 package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.service;
 
+import com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model.Game;
 import com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model.*;
 
 import java.util.List;
@@ -17,8 +18,44 @@ public class PlayerService {
         pokemonService = new PokemonService();
     }
 
+    public void attackToPlayer(Player attacker,Player defender) {
+        List<Pokemon> pokemons = attacker.getGameCharacter().getPokemons();
+        int playerPokemonCount = pokemons.size();
+        int pokemonId=0;
+        int pokemonDamageWithWeather=0;
+        if (playerPokemonCount == 1) {
+            Pokemon attackerPokemon= pokemons.get(0);
+            System.out.println("Attacker pokemon: "+attackerPokemon);
+            pokemonDamageWithWeather=pokemonService.getPokemonDamageWithWeather(attackerPokemon);
+        } else {
+            pokemonService.listPokemons(attacker);
+            System.out.println("Which pokemon would you like to attack with?" + "\n" +
+                    "Enter the pokemon id: ");
+            pokemonId = scanner.nextInt();
+            Pokemon attackerPokemon = pokemonService.getPlayerPokemonById(attacker, pokemonId);
+            if (attackerPokemon != null) {
+                System.out.println("Attacker pokemon: "+attackerPokemon);
+                pokemonDamageWithWeather=pokemonService.getPokemonDamageWithWeather(attackerPokemon);
+            }
+        }
+        System.out.println("Attacker pokemon damage in that weather:"+pokemonDamageWithWeather);
+        int attackerCharacterDamage=executeStrategyPowerAndGetPlayerDamage(attacker);
+        int attackerPokemonDamage=executeSuperPowerAndGetPlayerDamage(attacker,pokemonId,pokemonDamageWithWeather);
+        int totalAttackerDamage=attackerCharacterDamage+attackerPokemonDamage;
+        pokemonService.listPokemons(defender);
+        System.out.println("Which pokemon would you like to defend?" + "\n" +
+                "Enter the pokemon id: ");
+        pokemonId = scanner.nextInt();
+        Pokemon defenderPokemon = pokemonService.getPlayerPokemonById(defender, pokemonId);
+        System.out.println("Defender Pokemon: "+defenderPokemon);
+        int defenderPokemonHealth=defenderPokemon.getHealth()-totalAttackerDamage;
+        System.out.println("Defender Pokemon Health: "+defenderPokemonHealth);
+        defenderPokemon.setHealth(defenderPokemonHealth);
+    }
+
+
     public Player createPlayer(int id) {
-        System.out.println("Create player. Enter the name: ");
+        System.out.println("Enter the name to create player : ");
         String name = scanner.next();
         switch (id) {
             case 1 -> {
@@ -95,9 +132,10 @@ public class PlayerService {
             player1.getGameCharacter().getPokemons().add(player2Pokemon);
             addNewPokemonToLoserPlayer(game, player2);
         }
+
     }
 
-    public int executeStrategyPowerAndGetDamage(Player player) {
+    public int executeStrategyPowerAndGetPlayerDamage(Player player) {
         System.out.println("""
                 Do you want to use the character's strategy power ?
                 1 - Use strategy power
@@ -105,33 +143,36 @@ public class PlayerService {
                 Enter your choice (1/2) :
                 """);
         int choice = scanner.nextInt();
-        int damage = player.getGameCharacter().getPower().getDamage();
         if (choice == 1) {
-            GameCharacter playerCharacter= player.getGameCharacter();
+            GameCharacter playerCharacter = player.getGameCharacter();
+            characterService.updateCharacterDamageWithPower(playerCharacter);
+            int damage = player.getGameCharacter().getPower().getDamage();
+            int playerPowerRight=playerCharacter.getPower().getRemainRight();
             boolean powerRightZero = characterService.isCharacterPowerRightZero(playerCharacter);
             if (powerRightZero) {
+                System.out.println("Your power right is zero. You cannot damage this turn.");
                 damage = 0;
             }
+            System.out.println("Character Strategy Power will use.");
+            playerCharacter.getPower().setRemainRight(playerPowerRight-1);
             return damage;
         }
         return 0;
     }
 
-    public int executeSuperPowerAndGetDamage(Player player) {
+    public int executeSuperPowerAndGetPlayerDamage(Player player,int pokemonId,int pokemonDamageWithWeather) {
         List<Pokemon> pokemons = player.getGameCharacter().getPokemons();
         int playerPokemonCount = pokemons.size();
         int damage = 0;
         if (playerPokemonCount == 1) {
             Pokemon pokemon = pokemons.get(0);
-            damage = pokemonService.getPokemonDamageWithSuperPower(pokemon);
+            damage = pokemonService.getPokemonDamageWithSuperPower(pokemon,pokemonDamageWithWeather);
         } else {
             pokemonService.listPokemons(player);
-            System.out.println("Which pokemon would you like to use super power for?" + "\n" +
-                    "Enter the pokemon id: ");
-            int pokemonId = scanner.nextInt();
             Pokemon pokemon = pokemonService.getPlayerPokemonById(player, pokemonId);
             if (pokemon != null) {
-                damage = pokemonService.getPokemonDamageWithSuperPower(pokemon);
+                System.out.println(pokemon.getName()+" is fighting");
+                damage = pokemonService.getPokemonDamageWithSuperPower(pokemon,pokemonDamageWithWeather);
             }
         }
         return damage;

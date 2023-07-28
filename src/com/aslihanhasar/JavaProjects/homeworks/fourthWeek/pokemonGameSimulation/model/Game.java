@@ -1,5 +1,9 @@
 package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model;
 
+import com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model.GameCharacter;
+import com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model.Player;
+import com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model.Pokemon;
+
 import java.util.ArrayList;
 import java.util.List;
 

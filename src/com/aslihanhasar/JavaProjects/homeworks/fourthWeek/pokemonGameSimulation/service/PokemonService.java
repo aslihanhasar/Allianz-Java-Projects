@@ -1,5 +1,6 @@
 package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.service;
 
+import com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model.Game;
 import com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model.*;
 
 
@@ -13,8 +14,8 @@ public class PokemonService {
         scanner = new Scanner(System.in);
     }
 
-    public int getPokemonDamageWithSuperPower(Pokemon pokemon) {
-        int damage = pokemon.getDamage();
+    public int getPokemonDamageWithSuperPower(Pokemon pokemon,int pokemonDamageWithWeather) {
+        int damage=pokemonDamageWithWeather;
         System.out.println("""
                 Do you want to use the pokemon's super power ?
                 1 - Use super power
@@ -28,44 +29,49 @@ public class PokemonService {
                 damage = 0;
             }
             damage += pokemon.getPower().getDamage();
+            int pokemonPowerRight = pokemon.getPower().getRemainRight();
+            pokemon.getPower().setRemainRight(pokemonPowerRight - 1);
         }
         return damage;
     }
-    public void updatePokemonDamageWithWeather(Pokemon pokemon) {
-        String powerName=pokemon.getPower().getPowerType().getStrategyPowerEnum().name();
-        WeatherType weatherType=WeatherType.getRandomizeWeatherType();
-        int weatherImpact=weatherType.getWeatherImpact();
-        int pokemonNormalDamage=pokemon.getDamage();
-        int pokemonPowerDamage=pokemon.getPower().getDamage();
-        boolean changeDamage=false;
+
+    public int getPokemonDamageWithWeather(Pokemon pokemon) {
+        String powerName = pokemon.getPower().getName();
+        WeatherType weatherType = WeatherType.getRandomizeWeatherType();
+        int weatherImpact = weatherType.getWeatherImpact();
+        int pokemonDamage = pokemon.getDamage();
+        boolean changeDamage = false;
         switch (weatherType) {
-            case SUNNY ->{
-                if(powerName.equalsIgnoreCase(SuperPowerEnum.WATER.name())){
-                    changeDamage=true;
+            case SUNNY -> {
+                if (powerName.equalsIgnoreCase(SuperPowerEnum.WATER.name())) {
+                    System.out.println("WEATHER IS SUNNY.");
+                    changeDamage = true;
                 }
             }
             case RAINY -> {
-                if(powerName.equalsIgnoreCase(SuperPowerEnum.FIRE.name())){
-                    changeDamage=true;
+                if (powerName.equalsIgnoreCase(SuperPowerEnum.FIRE.name())) {
+                    System.out.println("WEATHER IS RAINY.");
+                    changeDamage = true;
                 }
             }
             case SAND_STORM -> {
-                if(powerName.equalsIgnoreCase(SuperPowerEnum.EARTH.name())){
-                    changeDamage=true;
+                if (powerName.equalsIgnoreCase(SuperPowerEnum.EARTH.name())) {
+                    System.out.println("WEATHER IS SAND STORM.");
+                    changeDamage = true;
                 }
             }
             case ELECTRIC_STORM -> {
-                if(powerName.equalsIgnoreCase(SuperPowerEnum.ELECTRICITY.name())){
-                    changeDamage=true;
+                if (powerName.equalsIgnoreCase(SuperPowerEnum.ELECTRICITY.name())) {
+                    System.out.println("WEATHER IS ELECTRICITY STORM.");
+                    changeDamage = true;
                 }
             }
+            default -> System.out.println("WEATHER IS NORMAL.");
         }
-        if(changeDamage){
-            pokemonNormalDamage-=weatherImpact;
-            pokemonPowerDamage-=weatherImpact;
-            pokemon.setDamage(pokemonNormalDamage);
-            pokemon.getPower().setDamage(pokemonPowerDamage);
+        if (changeDamage) {
+            pokemonDamage -= weatherImpact;
         }
+        return pokemonDamage;
     }
 
     public void listPokemons(Player player) {
