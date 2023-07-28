@@ -33,7 +33,7 @@ public enum WeatherType {
                 return weatherType;
             }
         }
-        return null;
+        return NORMAL;
     }
 
     private static int getRandomNumber(){
