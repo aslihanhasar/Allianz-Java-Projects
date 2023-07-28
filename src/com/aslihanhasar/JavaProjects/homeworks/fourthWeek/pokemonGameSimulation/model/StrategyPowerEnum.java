@@ -1,5 +1,7 @@
 package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model;
 
+import java.util.EnumSet;
+
 public enum StrategyPowerEnum {
     DEFENSIVE(0.8),
     OFFENSIVE(0.4),
@@ -20,10 +22,12 @@ public enum StrategyPowerEnum {
         this.defenseChance = defenseChance;
     }
 
-    @Override
-    public String toString() {
-        return "StrategyPowerEnum{" +
-                "defenseChance=" + defenseChance +
-                '}';
+    public static StrategyPowerEnum getStrategyType() {
+        var strategyTypes = EnumSet.allOf(StrategyPowerEnum.class);
+        for (StrategyPowerEnum strategyType : strategyTypes) {
+            return strategyType;
+        }
+        return null;
     }
+
 }
