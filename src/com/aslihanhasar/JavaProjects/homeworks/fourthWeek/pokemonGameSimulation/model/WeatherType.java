@@ -17,7 +17,7 @@ public enum WeatherType {
         this.randomValue=randomValue;
     }
 
-    public double getWeatherImpact() {
+    public int getWeatherImpact() {
         return weatherImpact;
     }
 
