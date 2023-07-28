@@ -9,11 +9,11 @@ public abstract class GameCharacter {
     private Power power;
     private List<Pokemon> pokemons;
 
-    public GameCharacter(int id,String name, Power power) {
-        this.id=id;
+    public GameCharacter(int id, String name, Power power) {
+        this.id = id;
         this.name = name;
         this.power = power;
-        this.pokemons=new ArrayList<>();
+        this.pokemons = new ArrayList<>();
     }
 
     public int getId() {
@@ -42,11 +42,12 @@ public abstract class GameCharacter {
 
     @Override
     public String toString() {
-        return "GameCharacter{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", power=" + power +
-                ", pokemons=" + pokemons +
-                '}';
+        return "ID: " + id + "\n" +
+                "Name: " + name + "\n" +
+                power + "\n" +
+                "Possibility of defense:" + power.getPowerType()
+                .getStrategyPowerEnum().getDefenseChance() + "\n" +
+                 "--- Pokemon Information ---" +"\n" +
+                pokemons+ "\n";
     }
 }
