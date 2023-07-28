@@ -8,13 +8,13 @@ import java.util.List;
 public class LoadService {
 
     public List<GameCharacter> loadCharacters() {
-        Power strategyDefensive = new StrategyPower("Defensive Strategy",
+        Power strategyDefensive = new StrategyPower("Defensive",
                 2, 1, new PowerType(StrategyPowerEnum.DEFENSIVE));
-        Power strategyOffensive = new StrategyPower("Offensive Strategy",
+        Power strategyOffensive = new StrategyPower("Offensive",
                 6, 1, new PowerType(StrategyPowerEnum.OFFENSIVE));
-        Power strategyBalanced = new StrategyPower("Balanced Strategy",
+        Power strategyBalanced = new StrategyPower("Balanced",
                 5, 1, new PowerType(StrategyPowerEnum.BALANCED));
-        Power strategyAggressive = new StrategyPower("Aggressive Strategy",
+        Power strategyAggressive = new StrategyPower("Aggressive",
                 8, 1, new PowerType(StrategyPowerEnum.AGGRESSIVE));
 
         GameCharacter characterMisty = new Misty(strategyDefensive);
