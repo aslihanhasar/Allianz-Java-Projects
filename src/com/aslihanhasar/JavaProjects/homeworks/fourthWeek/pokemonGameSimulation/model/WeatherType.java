@@ -4,15 +4,15 @@ import java.util.EnumSet;
 import java.util.Random;
 
 public enum WeatherType {
-    NORMAL(0.0,1),
+    NORMAL(0,1),
     SUNNY(2,2),
     RAINY(3,3),
     SAND_STORM(4,4),
     ELECTRIC_STORM(5,5);
 
-    private double weatherImpact;
+    private int weatherImpact;
     private int randomValue;
-    WeatherType(double weatherImpact,int randomValue){
+    WeatherType(int weatherImpact,int randomValue){
         this.weatherImpact=weatherImpact;
         this.randomValue=randomValue;
     }
@@ -21,7 +21,7 @@ public enum WeatherType {
         return weatherImpact;
     }
 
-    public void setWeatherImpact(double weatherImpact) {
+    public void setWeatherImpact(int weatherImpact) {
         this.weatherImpact = weatherImpact;
     }
 
@@ -33,8 +33,8 @@ public enum WeatherType {
         this.randomValue = randomValue;
     }
 
-    public static WeatherType getWeatherType() {
-        int randomNumber=changeWeatherRandomly();
+    public static WeatherType getRandomizeWeatherType() {
+        int randomNumber=getRandomNumber();
         var weatherTypes = EnumSet.allOf(WeatherType.class);
         for (WeatherType weatherType : weatherTypes) {
             if (weatherType.randomValue==randomNumber){
@@ -44,7 +44,7 @@ public enum WeatherType {
         return null;
     }
 
-    private static int changeWeatherRandomly(){
+    private static int getRandomNumber(){
         Random random=new Random();
         return random.nextInt(5);
     }
