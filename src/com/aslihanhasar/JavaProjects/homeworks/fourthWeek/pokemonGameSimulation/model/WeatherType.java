@@ -10,8 +10,8 @@ public enum WeatherType {
     SAND_STORM(4,4),
     ELECTRIC_STORM(5,5);
 
-    private int weatherImpact;
-    private int randomValue;
+    private final int weatherImpact;
+    private final int randomValue;
     WeatherType(int weatherImpact,int randomValue){
         this.weatherImpact=weatherImpact;
         this.randomValue=randomValue;
@@ -21,16 +21,8 @@ public enum WeatherType {
         return weatherImpact;
     }
 
-    public void setWeatherImpact(int weatherImpact) {
-        this.weatherImpact = weatherImpact;
-    }
-
     public int getRandomValue() {
         return randomValue;
-    }
-
-    public void setRandomValue(int randomValue) {
-        this.randomValue = randomValue;
     }
 
     public static WeatherType getRandomizeWeatherType() {
