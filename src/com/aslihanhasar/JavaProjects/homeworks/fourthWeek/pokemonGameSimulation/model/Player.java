@@ -32,9 +32,8 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                ", gameCharacter=" + gameCharacter +
-                '}';
+        return "\nPlayer name: " + name + "\n" +
+                "--- Character Information --- " + "\n" +
+                gameCharacter;
     }
 }
