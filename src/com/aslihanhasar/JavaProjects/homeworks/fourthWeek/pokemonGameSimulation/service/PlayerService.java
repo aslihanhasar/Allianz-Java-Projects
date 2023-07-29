@@ -1,61 +1,85 @@
 package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.service;
 
-import com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model.Game;
 import com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model.*;
 
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * The PlayerService class is responsible for handling player-related actions and interactions in the game.
+ * It provides methods for creating players, selecting characters and Pokemon, managing attacks, and updating player status.
+ */
 public class PlayerService {
     private final Scanner scanner;
     private final GameCharacterService characterService;
     private final PokemonService pokemonService;
 
+    /**
+     * Constructor to initialize PlayerService with a Scanner and related services.
+     */
     public PlayerService() {
         scanner = new Scanner(System.in);
         characterService = new GameCharacterService();
         pokemonService = new PokemonService();
     }
 
-    public void attackToPlayer(Player attacker,Player defender) {
+    /**
+     * Perform an attack by the attacker player on the defender player.
+     * This method handles choosing the attacking Pokemon, executing the strategy power, and calculating damage.
+     *
+     * @param attacker The attacking player
+     * @param defender The defending player
+     */
+    public void attackToPlayer(Player attacker, Player defender) {
         List<Pokemon> pokemons = attacker.getGameCharacter().getPokemons();
+        Pokemon attackerPokemon;
         int playerPokemonCount = pokemons.size();
-        int pokemonId=0;
-        int pokemonDamageWithWeather=0;
+        int pokemonId = 0;
+        int pokemonDamageWithWeather = 0;
         if (playerPokemonCount == 1) {
-            Pokemon attackerPokemon= pokemons.get(0);
-            System.out.println("Attacker pokemon: "+attackerPokemon);
-            pokemonDamageWithWeather=pokemonService.getPokemonDamageWithWeather(attackerPokemon);
+            attackerPokemon = pokemons.get(0);
+            pokemonDamageWithWeather = pokemonService.getPokemonDamageWithWeather(attackerPokemon);
         } else {
+            System.out.println("** Your Pokemons **");
             pokemonService.listPokemons(attacker);
-            System.out.println("Which pokemon would you like to attack with?" + "\n" +
+            System.out.print("Which pokemon would you like to attack with?" + "\n" +
                     "Enter the pokemon id: ");
             pokemonId = scanner.nextInt();
-            Pokemon attackerPokemon = pokemonService.getPlayerPokemonById(attacker, pokemonId);
+            attackerPokemon = pokemonService.getPlayerPokemonById(attacker, pokemonId);
             if (attackerPokemon != null) {
-                System.out.println("Attacker pokemon: "+attackerPokemon);
-                pokemonDamageWithWeather=pokemonService.getPokemonDamageWithWeather(attackerPokemon);
+                pokemonDamageWithWeather = pokemonService.getPokemonDamageWithWeather(attackerPokemon);
             }
         }
-        System.out.println("Attacker pokemon damage in that weather:"+pokemonDamageWithWeather);
-        int attackerCharacterDamage=executeStrategyPowerAndGetPlayerDamage(attacker);
-        int attackerPokemonDamage=executeSuperPowerAndGetPlayerDamage(attacker,pokemonId,pokemonDamageWithWeather);
-        int totalAttackerDamage=attackerCharacterDamage+attackerPokemonDamage;
+        System.out.println("Attacker Pokemon: " + attackerPokemon);
+        System.out.println("Attacker pokemon damage in that weather: " + pokemonDamageWithWeather);
+        int attackerCharacterDamage = executeStrategyPowerAndGetPlayerDamage(defender);
+        int attackerPokemonDamage = executeSuperPowerAndGetPlayerDamage(attacker, pokemonId, pokemonDamageWithWeather);
+        int totalAttackerDamage = attackerCharacterDamage + attackerPokemonDamage;
+        System.out.println("Attacker pokemon dealt a total of " + totalAttackerDamage + " damage.");
+        System.out.print("** Your Pokemons **");
         pokemonService.listPokemons(defender);
-        System.out.println("Which pokemon would you like to defend?" + "\n" +
-                "Enter the pokemon id: ");
+        System.out.print("""
+                !!! HEY DEFENDER PLAYER !!
+                Which pokemon would you like to defend?
+                Enter the pokemon id:""");
         pokemonId = scanner.nextInt();
         Pokemon defenderPokemon = pokemonService.getPlayerPokemonById(defender, pokemonId);
-        System.out.println("Defender Pokemon: "+defenderPokemon);
-        int defenderPokemonHealth=defenderPokemon.getHealth()-totalAttackerDamage;
-        System.out.println("Defender Pokemon Health: "+defenderPokemonHealth);
+        System.out.println("Defender Pokemon: " + "\n" + defenderPokemon);
+        int defenderPokemonHealth = defenderPokemon.getHealth() - totalAttackerDamage;
+        System.out.println("Defender Pokemon Health: " + defenderPokemonHealth);
         defenderPokemon.setHealth(defenderPokemonHealth);
     }
 
+    /**
+     * Create a new player with the given ID and name.
+     *
+     * @param id The ID of the player
+     * @return The created Player object
+     */
 
     public Player createPlayer(int id) {
-        System.out.println("Enter the name to create player : ");
+        System.out.print("Enter the name to create player : ");
         String name = scanner.next();
         switch (id) {
             case 1 -> {
@@ -71,6 +95,12 @@ public class PlayerService {
         }
     }
 
+    /**
+     * Let the player select a character from the available game characters.
+     *
+     * @param game   The game instance
+     * @param player The player who will select the character
+     */
     public void selectCharacter(Game game, Player player) {
         System.out.print("Enter the id of the character you want to select: ");
         int characterId = scanner.nextInt();
@@ -87,6 +117,12 @@ public class PlayerService {
         }
     }
 
+    /**
+     * Let the player select a Pokemon from the available game Pokémon.
+     *
+     * @param game   The game instance
+     * @param player The player who will select the Pokemon
+     */
     public void selectPokemon(Game game, Player player) {
         System.out.print("Enter the id of the pokemon you want to select: ");
         int pokemonId = scanner.nextInt();
@@ -104,17 +140,28 @@ public class PlayerService {
         }
     }
 
+    /**
+     * Randomly choose the attacking player for the current round.
+     *
+     * @param game The game instance
+     * @return The player who will be the attacker for this round
+     */
     public Player getAttackerPlayer(Game game) {
         int randomNumber = rollDice();
         if (randomNumber == 1) {
-            System.out.println("Player 1 starts the game");
+            System.out.println("\nPlayer 1 starts the game");
             return game.getPlayer1();
         } else {
-            System.out.println("Player 2 starts the game");
+            System.out.println("\nPlayer 2 starts the game");
             return game.getPlayer2();
         }
     }
 
+    /**
+     * Update player status and Pokemon after a round of battle.
+     *
+     * @param game The game instance
+     */
     public void updatePlayer(Game game) {
         Player player1 = game.getPlayer1();
         Player player2 = game.getPlayer2();
@@ -135,8 +182,15 @@ public class PlayerService {
 
     }
 
+    /**
+     * Execute the strategy power for the player and calculate damage based on the strategy power.
+     *
+     * @param player The player who will use the strategy power
+     * @return The calculated damage based on the strategy power
+     */
     public int executeStrategyPowerAndGetPlayerDamage(Player player) {
         System.out.println("""
+                \n!! HEY ATTACKER PLAYER !!
                 Do you want to use the character's strategy power ?
                 1 - Use strategy power
                 2 - Not use strategy power.
@@ -144,40 +198,54 @@ public class PlayerService {
                 """);
         int choice = scanner.nextInt();
         if (choice == 1) {
+            System.out.println("Character Strategy Power will use.");
             GameCharacter playerCharacter = player.getGameCharacter();
             characterService.updateCharacterDamageWithPower(playerCharacter);
             int damage = player.getGameCharacter().getPower().getDamage();
-            int playerPowerRight=playerCharacter.getPower().getRemainRight();
+            int playerPowerRight = playerCharacter.getPower().getRemainRight();
             boolean powerRightZero = characterService.isCharacterPowerRightZero(playerCharacter);
             if (powerRightZero) {
                 System.out.println("Your power right is zero. You cannot damage this turn.");
                 damage = 0;
             }
-            System.out.println("Character Strategy Power will use.");
-            playerCharacter.getPower().setRemainRight(playerPowerRight-1);
+            playerCharacter.getPower().setRemainRight(playerPowerRight - 1);
             return damage;
         }
         return 0;
     }
 
-    public int executeSuperPowerAndGetPlayerDamage(Player player,int pokemonId,int pokemonDamageWithWeather) {
+    /**
+     * Execute the superpower for the player's Pokemon and calculate damage based on the superpower.
+     *
+     * @param player                   The player who owns the attacking Pokemon
+     * @param pokemonId                The ID of the attacking Pokemon
+     * @param pokemonDamageWithWeather The Pokemon damage considering the weather condition
+     * @return The calculated damage based on the superpower of the Pokemon
+     */
+    public int executeSuperPowerAndGetPlayerDamage(Player player, int pokemonId, int pokemonDamageWithWeather) {
         List<Pokemon> pokemons = player.getGameCharacter().getPokemons();
         int playerPokemonCount = pokemons.size();
         int damage = 0;
         if (playerPokemonCount == 1) {
             Pokemon pokemon = pokemons.get(0);
-            damage = pokemonService.getPokemonDamageWithSuperPower(pokemon,pokemonDamageWithWeather);
+            damage = pokemonService.getPokemonDamageWithSuperPower(pokemon, pokemonDamageWithWeather);
         } else {
             pokemonService.listPokemons(player);
             Pokemon pokemon = pokemonService.getPlayerPokemonById(player, pokemonId);
             if (pokemon != null) {
-                System.out.println(pokemon.getName()+" is fighting");
-                damage = pokemonService.getPokemonDamageWithSuperPower(pokemon,pokemonDamageWithWeather);
+                System.out.println(pokemon.getName() + " is fighting");
+                damage = pokemonService.getPokemonDamageWithSuperPower(pokemon, pokemonDamageWithWeather);
             }
         }
         return damage;
     }
 
+    /**
+     * Add a new Pokemon to the loser player after losing a round.
+     *
+     * @param game   The game instance
+     * @param player The player who lost the round
+     */
     private void addNewPokemonToLoserPlayer(Game game, Player player) {
         List<Pokemon> gamePokemons = game.getGamePokemons();
         Pokemon pokemonWithLowestDamage = gamePokemons.get(0);
@@ -192,6 +260,12 @@ public class PlayerService {
         game.getGamePokemons().remove(pokemonWithLowestDamage);
     }
 
+    /**
+     * Check if the player has lost the game by checking if any of their Pokemon's health is zero.
+     *
+     * @param player The player to check
+     * @return True if the player has lost, otherwise false
+     */
     public boolean isPlayerLost(Player player) {
         return isPlayerHealthZero(player);
     }
@@ -206,6 +280,11 @@ public class PlayerService {
         return false;
     }
 
+    /**
+     * Roll a dice to randomly determine the attacking player.
+     *
+     * @return 1 for player1 (attacker), 2 for player2 (attacker)
+     */
     private int rollDice() {
         Random random = new Random();
         return random.nextInt(2);

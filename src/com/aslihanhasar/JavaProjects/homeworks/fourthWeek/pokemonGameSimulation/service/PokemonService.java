@@ -1,22 +1,37 @@
 package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.service;
 
-import com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model.Game;
 import com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model.*;
-
 
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The PokemonService class is responsible for handling Pokemon-related actions and interactions in the game.
+ * It provides methods for calculating damage based on superpowers and weather conditions, listing Pokémon,
+ * and retrieving Pokémon by ID for players and the game.
+ */
 public class PokemonService {
     private final Scanner scanner;
 
+    /**
+     * Constructor to initialize PokemonService with a Scanner.
+     */
     public PokemonService() {
         scanner = new Scanner(System.in);
     }
 
-    public int getPokemonDamageWithSuperPower(Pokemon pokemon,int pokemonDamageWithWeather) {
-        int damage=pokemonDamageWithWeather;
-        System.out.println("""
+    /**
+     * Calculate the damage dealt by a Pokemon with its superpower.
+     * The player can choose whether to use the superpower or not.
+     *
+     * @param pokemon                  The attacking Pokemon
+     * @param pokemonDamageWithWeather The Pokemon's base damage considering the weather condition
+     * @return The calculated damage based on the superpower of the Pokemon
+     */
+    public int getPokemonDamageWithSuperPower(Pokemon pokemon, int pokemonDamageWithWeather) {
+        int damage = pokemonDamageWithWeather;
+        System.out.print("""
+                \n!! HEY ATTACKER PLAYER!!
                 Do you want to use the pokemon's super power ?
                 1 - Use super power
                 2 - Not use super power.
@@ -35,6 +50,12 @@ public class PokemonService {
         return damage;
     }
 
+    /**
+     * Calculate the damage dealt by a Pokemon considering the weather condition.
+     *
+     * @param pokemon The attacking Pokemon
+     * @return The calculated damage based on the weather and Pokemon's type
+     */
     public int getPokemonDamageWithWeather(Pokemon pokemon) {
         String powerName = pokemon.getPower().getName();
         WeatherType weatherType = WeatherType.getRandomizeWeatherType();
@@ -43,26 +64,26 @@ public class PokemonService {
         boolean changeDamage = false;
         switch (weatherType) {
             case SUNNY -> {
+                System.out.println("WEATHER IS SUNNY.");
                 if (powerName.equalsIgnoreCase(SuperPowerEnum.WATER.name())) {
-                    System.out.println("WEATHER IS SUNNY.");
                     changeDamage = true;
                 }
             }
             case RAINY -> {
+                System.out.println("WEATHER IS RAINY.");
                 if (powerName.equalsIgnoreCase(SuperPowerEnum.FIRE.name())) {
-                    System.out.println("WEATHER IS RAINY.");
                     changeDamage = true;
                 }
             }
             case SAND_STORM -> {
+                System.out.println("WEATHER IS SAND STORM.");
                 if (powerName.equalsIgnoreCase(SuperPowerEnum.EARTH.name())) {
-                    System.out.println("WEATHER IS SAND STORM.");
                     changeDamage = true;
                 }
             }
             case ELECTRIC_STORM -> {
+                System.out.println("WEATHER IS ELECTRICITY STORM.");
                 if (powerName.equalsIgnoreCase(SuperPowerEnum.ELECTRICITY.name())) {
-                    System.out.println("WEATHER IS ELECTRICITY STORM.");
                     changeDamage = true;
                 }
             }
@@ -74,6 +95,11 @@ public class PokemonService {
         return pokemonDamage;
     }
 
+    /**
+     * List all the Pokémon of a specific player's game character.
+     *
+     * @param player The player whose Pokémon will be listed
+     */
     public void listPokemons(Player player) {
         List<Pokemon> pokemons = player.getGameCharacter().getPokemons();
         for (Pokemon pokemon : pokemons) {
@@ -81,6 +107,13 @@ public class PokemonService {
         }
     }
 
+    /**
+     * Get a Pokemon from a specific player's game character by its ID.
+     *
+     * @param player    The player whose game character contains the Pokemon
+     * @param pokemonId The ID of the desired Pokemon
+     * @return The Pokemon with the specified ID, or null if not found
+     */
     public Pokemon getPlayerPokemonById(Player player, int pokemonId) {
         List<Pokemon> pokemons = player.getGameCharacter().getPokemons();
         for (Pokemon pokemon : pokemons) {
@@ -91,6 +124,13 @@ public class PokemonService {
         return null;
     }
 
+    /**
+     * Get a Pokemon from the game's available Pokemon by its ID.
+     *
+     * @param game The game instance
+     * @param id   The ID of the desired Pokemon
+     * @return The Pokemon with the specified ID, or null if not found
+     */
     public Pokemon getGamePokemonById(Game game, int id) {
         List<Pokemon> gamePokemons = game.getGamePokemons();
         for (Pokemon pokemon : gamePokemons) {
@@ -101,6 +141,12 @@ public class PokemonService {
         return null;
     }
 
+    /**
+     * Check if the Pokemon's superpower right is zero.
+     *
+     * @param pokemon The Pokemon to check
+     * @return True if the Pokemon's superpower right is zero, otherwise false
+     */
     private boolean isPokemonPowerRightZero(Pokemon pokemon) {
         return pokemon.getPower().getRemainRight() <= 0;
     }

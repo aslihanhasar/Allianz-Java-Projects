@@ -49,10 +49,10 @@ public abstract class Pokemon {
 
     @Override
     public String toString() {
-        return "Pokemon ID: " + id +"\n"+
-                "Name: " + name +"\n"+
-                "Health: " + health +"\n"+
-                "Damage: " + damage +"\n"+
-                 power+"\n";
+        return "\nPokemon ID: " + id + "\n" +
+                "Name: " + name + "\n" +
+                "Health: " + health + "\n" +
+                "Damage: " + damage + "\n" +
+                power + "\n";
     }
 }

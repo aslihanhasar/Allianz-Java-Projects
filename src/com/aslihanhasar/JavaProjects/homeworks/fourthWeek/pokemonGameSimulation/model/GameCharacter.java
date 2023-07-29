@@ -45,9 +45,9 @@ public abstract class GameCharacter {
         return "ID: " + id + "\n" +
                 "Name: " + name + "\n" +
                 power + "\n" +
-                "Possibility of defense:" + power.getPowerType()
+                "Possibility of defense(%) :" + power.getPowerType()
                 .getStrategyPowerEnum().getDefenseChance() + "\n" +
-                 "--- Pokemon Information ---" +"\n" +
-                pokemons+ "\n";
+                "--- Pokemon Information ---" + "\n" +
+                pokemons + "\n";
     }
 }

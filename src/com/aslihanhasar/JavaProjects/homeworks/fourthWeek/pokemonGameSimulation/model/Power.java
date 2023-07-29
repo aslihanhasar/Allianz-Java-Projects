@@ -47,9 +47,9 @@ public abstract class Power {
 
     @Override
     public String toString() {
-        return " ** Power **" +  "\n" +
+        return " ** Power **" + "\n" +
                 "Name: " + name + "\n" +
                 "Damage: " + damage + "\n" +
-                "Total Usability: " + remainRight ;
+                "Total Usability: " + remainRight;
     }
 }

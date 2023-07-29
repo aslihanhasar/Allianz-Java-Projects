@@ -15,6 +15,7 @@ public class PowerType {
     public SuperPowerEnum getSuperPowerEnum() {
         return superPowerEnum;
     }
+
     public StrategyPowerEnum getStrategyPowerEnum() {
         return strategyPowerEnum;
     }

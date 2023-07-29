@@ -1,7 +1,5 @@
 package com.aslihanhasar.JavaProjects.homeworks.fourthWeek.pokemonGameSimulation.model;
 
-import java.util.EnumSet;
-
 public enum StrategyPowerEnum {
     DEFENSIVE(80),
     OFFENSIVE(40),
