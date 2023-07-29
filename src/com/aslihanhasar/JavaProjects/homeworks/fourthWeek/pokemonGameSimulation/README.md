@@ -1,39 +1,28 @@
 # THE POKEMON GAME
 
-### The Transcript Management System is an application that allows clients to manage student transcript-related operations. It includes the following classes.
+### This is a text-based Pokemon game implemented in Java. In this game, players can choose their characters and Pokemon to battle against each other. Each character has a strategy power, and each Pokemon has a unique superpower. The battle takes place in different weather conditions, which can impact the damage dealt during the fight.
 
 ---
 
 ## PROJECT DETAILS
 
-* Package util, contains the definition of the enum type Grade, and a test class for it,
-  named GradeTest.
+- Choose from a variety of unique characters and Pokemon, each with their own special abilities.
+- Engage in strategic battles, utilizing character strategy powers and Pokemon superpowers.
+- Weather conditions affect the damage dealt by certain types of Pokemon.
+- Players can use defensive strategies to block or reduce damage during the battle.
+- The game includes a player versus player mode, allowing two players to compete against each other on the same console.
+- The game is implemented using object-oriented programming principles. The main classes and their functionalities are
+  as follows:
 
-#### Grade (Enum) :
-
-The Grade enum type represents student grades with constants A, B, C, D, and F.
-Each constant has 'stringValue' (letter grade) and numericValue (numeric grade) fields.
-The toString() method displays the letter and numerical grade for each constant.
-
-#### GradeTest:
-
-The GradeTest class is a test program for the Grade enum.
-It uses a for loop and the values() method of Grade to print all the grades
-along with their numeric values using the toString() method of the Grade class.
-
-* Package main, contains the CourseGrade, Transcript and GenerateTranscript classes.
-
-#### CourseGrade:
-
-The CourseGrade class represents a student's course information.
-It stores courseDepartment, courseCode, courseCredit, and gradeTaken.
-The class ensures valid values with appropriate getters and setters.
-It has four constructors for different inputs and a toString() method for formatted output.
-
-#### CourseGrade:
-
-The Transcript class stores a student's transcript with their studentID and a list of CourseGrade objects.
-The GPA is calculated and stored for the transcript.
+- `Game`: Represents the game session, storing player information and game characters and Pokemon.
+- `Player`: Represents a player, including their name, character, and chosen Pokemon.
+- `GameCharacter`: Represents a game character, which includes a strategy power and a set of Pokemon.
+- `Pokemon`: Represents a Pokemon, including its superpower and health status.
+- `GameService`: Manages the game flow, including player creation, character and Pokemon selection, and battle
+  mechanics.
+- `PlayerService`: Handles player-related actions such as attacking, defending, and checking player status.
+- `GameCharacterService`: Handles character-related actions, including character strategy power management.
+- `PokemonService`: Handles Pokemon-related actions, such as calculating damage with superpowers and weather conditions.
 
 ---
 
@@ -46,13 +35,9 @@ Import the project classes.
 
 ## Usage
 
-* After cloning the project, open it with the ide you used.
-* Create a CourseGrade object, providing the necessary details.
-* Create a Transcript object for the student, passing the ID as an argument.
-* Add each CourseGrade object to the Transcript object using the addCourseTaken() method.
-* Print the student's transcript using the toString() method of the Transcript class.
-
-###### It is represented in Main class.
+1. Ensure you have Java installed on your system.
+2. Compile the Java source files using your preferred Java compiler.
+3. Run the compiled `Main` class to start the game.
 
 ---
 
