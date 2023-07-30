@@ -2,14 +2,20 @@ package com.aslihanhasar.JavaProjects.homeworks.thirdWeek.transcriptSimulation.m
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * The GenerateTranscript class allows the user to input student information or read student information
+ * from a file to generate and print a student's transcript.
+ */
 public class GenerateTranscript {
     private final Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Takes input from the user to enter course information and grades for a student.
+     * It creates a Transcript object to store the entered course grades and prints the transcript.
+     */
     public void takeInputFromUser() {
         System.out.print("Enter the student ID: ");
         int studentID = scanner.nextInt();
@@ -37,6 +43,11 @@ public class GenerateTranscript {
         System.out.println(transcript);
     }
 
+    /**
+     * Reads student information from a file and generates and prints the student's transcript.
+     * The file should contain student ID followed by course information in each line.
+     * The format of each line should be: "department courseCode courseCredit gradeTaken".
+     */
     public void takeInputFromFile() {
         try {
             System.out.print("Enter the file name: ");
