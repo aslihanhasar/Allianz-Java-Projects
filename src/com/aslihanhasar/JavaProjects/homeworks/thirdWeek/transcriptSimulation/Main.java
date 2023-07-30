@@ -2,11 +2,17 @@ package com.aslihanhasar.JavaProjects.homeworks.thirdWeek.transcriptSimulation;
 
 
 import com.aslihanhasar.JavaProjects.homeworks.thirdWeek.transcriptSimulation.main.CourseGrade;
+import com.aslihanhasar.JavaProjects.homeworks.thirdWeek.transcriptSimulation.main.GenerateTranscript;
 import com.aslihanhasar.JavaProjects.homeworks.thirdWeek.transcriptSimulation.main.Transcript;
 import com.aslihanhasar.JavaProjects.homeworks.thirdWeek.transcriptSimulation.util.Grade;
 
 public class Main {
+    /**
+     * The main method is the entry point of the application.
+     * It creates an instance of the GenerateTranscript class and calls its methods.
+     */
     public static void main(String[] args) {
+        /*
         CourseGrade courseGrade = new CourseGrade("ceng", 102, 5, Grade.B);
         CourseGrade courseGrade2 = new CourseGrade("eCE", 52, 4, Grade.C);
         CourseGrade courseGrade3 = new CourseGrade("comp", 186, 3, Grade.C);
@@ -20,5 +26,11 @@ public class Main {
         transcript.addCourseTaken(courseGrade4);
         transcript.addCourseTaken(courseGrade5);
         System.out.println(transcript);
+
+         */
+
+        GenerateTranscript generateTranscript = new GenerateTranscript();
+        generateTranscript.takeInputFromUser();
+        generateTranscript.takeInputFromFile();
     }
 }
