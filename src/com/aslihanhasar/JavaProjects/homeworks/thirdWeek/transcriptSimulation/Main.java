@@ -26,7 +26,7 @@ public class Main {
          */
 
         GenerateTranscript generateTranscript = new GenerateTranscript();
-        generateTranscript.takeInputFromUser();
+        // generateTranscript.takeInputFromUser();
         generateTranscript.takeInputFromFile();
     }
 }
