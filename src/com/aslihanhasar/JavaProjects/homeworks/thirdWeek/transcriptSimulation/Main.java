@@ -1,10 +1,6 @@
 package com.aslihanhasar.JavaProjects.homeworks.thirdWeek.transcriptSimulation;
 
-
-import com.aslihanhasar.JavaProjects.homeworks.thirdWeek.transcriptSimulation.main.CourseGrade;
 import com.aslihanhasar.JavaProjects.homeworks.thirdWeek.transcriptSimulation.main.GenerateTranscript;
-import com.aslihanhasar.JavaProjects.homeworks.thirdWeek.transcriptSimulation.main.Transcript;
-import com.aslihanhasar.JavaProjects.homeworks.thirdWeek.transcriptSimulation.util.Grade;
 
 public class Main {
     /**
