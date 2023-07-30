@@ -73,8 +73,7 @@ public class GenerateTranscript {
         } catch (FileNotFoundException e) {
             System.err.println("Error: File not found.");
         } catch (Exception e) {
-            System.err.println("Error: Invalid file format." + e.getMessage());
-            e.printStackTrace();
+            System.err.println("Error: Invalid file format.");
         }
     }
 }
